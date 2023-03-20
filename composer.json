@@ -1,0 +1,17 @@
+{
+    "name": "aefe2/server_practice",
+    "description": "EP on server side foundation",
+    "type": "project",
+    "license": "MIT",
+    "minimum-stability": "dev",
+    "require": {
+        "php": "^7.4 | ^8.0"
+    },
+    "autoload": {
+      "psr-4": {
+        "Src\\": "core/Src/",
+        "": "app/"
+      }
+    }
+
+}
