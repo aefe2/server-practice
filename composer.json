@@ -3,7 +3,13 @@
     "description": "EP on server side foundation",
     "type": "project",
     "license": "MIT",
-    "minimum-stability": "dev",
+    "authors": [
+      {
+        "name": "aefe2",
+        "email": "shigaev_1990@mail.ru"
+      }
+    ],
+  "minimum-stability": "dev",
     "require": {
         "php": "^7.4 | ^8.0"
     },
