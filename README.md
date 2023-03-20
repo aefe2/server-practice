@@ -1,2 +1,2 @@
 <h1 align="center">Project install</h1>
-<h4> Run composer create-project aefe2/server-practice </h4>
+Run <h4>composer create-project aefe2/server-practice </h4>
