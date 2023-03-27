@@ -12,8 +12,8 @@
   "minimum-stability": "dev",
     "require": {
         "php": "^7.4 | ^8.0",
-        "illuminate/database": "^11.0@dev",
-        "illuminate/events": "^11.0@dev",
+        "illuminate/database": "^9.0@dev",
+        "illuminate/events": "^9.0@dev",
         "nikic/fast-route": "^2.0@dev"
     },
     "autoload": {

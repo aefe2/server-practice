@@ -82,7 +82,7 @@ class Route
         }
         $uri = rawurldecode($uri);
         $uri = substr($uri, strlen($this->prefix));
-
+        //var_dump($uri);die();
         $dispatcher = new Dispatcher($this->routeCollector->getData());
 
         $routeInfo = $dispatcher->dispatch($httpMethod, $uri);
