@@ -13,21 +13,26 @@
     <div class="header">
         <h1 class="header-title">Учет пациентов</h1>
     </div>
-    <nav class="nav">
-        <a href="<?= app()->route->getUrl('/hello') ?>">Главная</a>
-        <?php
-        if (!app()->auth::check()):
+    <div class="nav-container">
+        <nav class="nav">
+            <a href="<?= app()->route->getUrl('/hello') ?>">Главная</a>
+            <?php
+            if (!app()->auth::check()):
+                ?>
+                <a href="<?= app()->route->getUrl('/login') ?>">Вход</a>
+                <a href="<?= app()->route->getUrl('/signup') ?>">Регистрация</a>
+            <?php
+            else:
+                ?>
+                <a href="<?= app()->route->getUrl('/admin') ?>">Админ панель</a>
+                <a href="<?= app()->route->getUrl('/choices') ?>">Перейти к выборке</a>
+                <a href="<?= app()->route->getUrl('/reception') ?>">Перейти к добавлению</a>
+                <a href="<?= app()->route->getUrl('/logout') ?>">Выход (<?= app()->auth::user()->name ?>)</a>
+            <?php
+            endif;
             ?>
-            <a href="<?= app()->route->getUrl('/login') ?>">Вход</a>
-            <a href="<?= app()->route->getUrl('/signup') ?>">Регистрация</a>
-        <?php
-        else:
-            ?>
-            <a href="<?= app()->route->getUrl('/logout') ?>">Выход (<?= app()->auth::user()->name ?>)</a>
-        <?php
-        endif;
-        ?>
-    </nav>
+        </nav>
+    </div>
 </header>
 <main class="main">
     <?= $content ?? '' ?>

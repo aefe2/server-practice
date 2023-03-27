@@ -10,12 +10,13 @@ body {
 
 @font-face {
     font-family: 'Montserrat', sans-serif;
-    src: url("/Montserrat-Regular.ttf") format('ttf');
+    src: url("/fonts/Montserrat-Regular.ttf") format('ttf');
 }
 
 h3 {
     font-weight: normal;
     font-size: 24px;
+
 }
 
 .header {
@@ -37,17 +38,22 @@ h3 {
     margin: auto;
 }
 
+.nav-container {
+    width: 85vw;
+    margin: auto;
+}
+
 .nav {
+    margin: 40px 0 40px 0;
     width: fit-content;
-    margin: 40px auto 60px auto;
     padding: 10px;
     background-color: rgba(217, 217, 217, 20%);
     border-radius: 5px;
 }
 
 .nav > a {
-    text-decoration: none;
     margin-right: 10px;
+    text-decoration: none;
     color: black;
     border-bottom: 1px solid black;
 }
@@ -101,14 +107,12 @@ h3 {
     grid-column: 1/3;
     grid-row: 7/8;
     margin: 10px auto;
-    cursor: pointer;
 }
 
 .add-doctor-form > form > input[type="submit"]:hover {
     transition: .1s;
     background: white;
     color: black;
-    cursor: pointer;
 }
 
 .forms {
@@ -146,13 +150,11 @@ h3 {
     grid-column: 1/3;
     grid-row: 7/8;
     margin: 10px auto;
-    cursor: pointer;
 }
 
 .add-patient-form > form > input[type="submit"]:hover {
     transition: .1s;
     background: white;
-    cursor: pointer;
     color: black;
 }
 
@@ -184,14 +186,12 @@ h3 {
     grid-column: 1/3;
     grid-row: 7/8;
     margin: 10px auto;
-    cursor: pointer;
 }
 
 .patient-record-form > form > input[type="submit"]:hover {
     transition: .1s;
     background: white;
     color: black;
-    cursor: pointer;
 }
 
 /*login*/
@@ -227,7 +227,6 @@ h3 {
 }
 
 .login-form > form > input[type="submit"] {
-    cursor: pointer;
     font-family: 'Montserrat', sans-serif;
     width: 100px;
     background: black;
@@ -241,16 +240,9 @@ h3 {
     transition: .1s;
     background: white;
     color: black;
-    cursor: pointer;
 }
 
 /*register*/
-.form {
-    display: grid;
-    width: 500px;
-    margin: 140px auto;
-}
-
 .register-form > h3 {
     padding-bottom: 5px;
     border-bottom: 1px solid black;
@@ -278,22 +270,153 @@ h3 {
 
 .register-form > form > input[type="submit"] {
     font-family: 'Montserrat', sans-serif;
+    width: 140px;
     background: black;
     color: white;
     grid-column: 1/3;
     grid-row: 7/8;
     margin: 10px auto;
-    cursor: pointer;
 }
 
 .register-form > form > input[type="submit"]:hover {
     transition: .1s;
     background: white;
     color: black;
-    cursor: pointer;
 }
 
 /*reception*/
 .main {
-    margin-top: 100px;
+    margin-top: 50px;
+}
+
+/*choices*/
+.choose-all-diagnosis > form {
+    display: grid;
+    grid-template-columns: repeat(2, .5fr);
+    align-items: center;
+    padding: 30px;
+    background-color: rgba(170, 170, 170, 5%);
+    border-radius: 5px;
+}
+
+.choose-all-diagnosis > form > input, select {
+    margin-bottom: 10px;
+    border-radius: 5px;
+    padding: 5px;
+    border: 1px solid black;
+}
+
+.choose-all-diagnosis > form > input[type="button"] {
+    font-family: 'Montserrat', sans-serif;
+    width: 100px;
+    background: black;
+    color: white;
+}
+
+.choose-all-diagnosis > form > input[type="button"]:hover {
+    transition: .1s;
+    background: white;
+    color: black;
+}
+
+.choose-all-patients > form {
+    display: grid;
+    grid-template-columns: repeat(2, .5fr);
+    align-items: center;
+    padding: 30px;
+    background-color: rgba(170, 170, 170, 5%);
+    border-radius: 5px;
+}
+
+.choose-all-patients > form > input, select {
+    margin-bottom: 10px;
+    border-radius: 5px;
+    padding: 5px;
+    border: 1px solid black;
+}
+
+.choose-all-patients > form > input[type="submit"] {
+    font-family: 'Montserrat', sans-serif;
+    width: 100px;
+    background: black;
+    color: white;
+    grid-column: 1/3;
+    grid-row: 7/8;
+    margin: 10px auto;
+}
+
+.choose-all-patients > form > input[type="submit"]:hover {
+    transition: .1s;
+    background: white;
+    color: black;
+}
+
+
+.choose-all-doctors > form {
+    display: grid;
+    grid-template-columns: repeat(2, .5fr);
+    align-items: center;
+    padding: 30px;
+    background-color: rgba(170, 170, 170, 5%);
+    border-radius: 5px;
+}
+
+.choose-all-doctors > form > input, select {
+    margin-bottom: 10px;
+    border-radius: 5px;
+    padding: 5px;
+    border: 1px solid black;
+}
+
+.choose-all-doctors > form > input[type="submit"] {
+    font-family: 'Montserrat', sans-serif;
+    width: 100px;
+    background: black;
+    color: white;
+    grid-column: 1/3;
+    grid-row: 7/8;
+    margin: 10px auto;
+}
+
+.choose-all-doctors > form > input[type="submit"]:hover {
+    transition: .1s;
+    background: white;
+    color: black;
+}
+
+.results {
+    display: grid;
+    grid-template-columns: repeat(2, .5fr);
+    align-items: center;
+    padding: 10px;
+    background-color: rgba(170, 170, 170, 0.15);
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+.results > span {
+    margin-bottom: 5px;
+}
+
+.results > form > input, select {
+    margin-bottom: 10px;
+    border-radius: 5px;
+    padding: 5px;
+    border: 1px solid black;
+}
+
+.results > form > input[type="submit"] {
+    font-family: 'Montserrat', sans-serif;
+    width: 100px;
+    background: black;
+    color: white;
+    grid-column: 1/3;
+    grid-row: 7/8;
+    margin: 10px auto;
+}
+
+.results > form > input[type="submit"]:hover {
+    transition: .1s;
+    background: white;
+    color: black;
 }

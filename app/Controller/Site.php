@@ -18,7 +18,7 @@ class Site
 
     public function hello(): string
     {
-        return new View('site.hello', ['message' => 'hello working']);
+        return new View('site.hello', ['message' => 'Здравствуйте, ' . app()->auth::user()->name]);
     }
 
     public function signup(Request $request): string
@@ -41,6 +41,21 @@ class Site
         }
         //Если аутентификация не удалась, то сообщение об ошибке
         return new View('site.login', ['message' => 'Неправильные логин или пароль']);
+    }
+
+    public function adminPanel(Request $request): string
+    {
+        return new View('site.admin');
+    }
+
+    public function choices(Request $request): string
+    {
+        return new View('site.choices');
+    }
+
+    public function reception(Request $request): string
+    {
+        return new View('site.reception');
     }
 
     public function logout(): void

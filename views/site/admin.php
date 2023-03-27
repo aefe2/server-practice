@@ -19,7 +19,6 @@
             </select>
             <input type="submit" value="Добавить">
         </form>
-
     </div>
     <div class="add-patient-form">
         <h3>Добавить пациента</h3>
