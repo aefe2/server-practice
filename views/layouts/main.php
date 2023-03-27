@@ -37,6 +37,9 @@
 <main class="main">
     <?= $content ?? '' ?>
 </main>
-
+<footer class="footer">
+    <img src="public/assets/img/umbrella.png" alt="Umbrella Corporation">
+    <span>Umbrella Corporation &copy;</span>
+</footer>
 </body>
 </html>
