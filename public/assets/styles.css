@@ -12,7 +12,7 @@ body {
 
 @font-face {
     font-family: 'Montserrat', sans-serif;
-    src: url("/fonts/Montserrat-Regular.ttf") format('ttf');
+    src: url("/Montserrat-Regular.ttf") format('ttf');
 }
 
 h3, h2 {

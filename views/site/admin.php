@@ -1,22 +1,27 @@
 <div class="forms">
     <div class="add-doctor-form">
         <h3>Добавить врача</h3>
-        <form>
+        <form method="post">
             <label for="doctor-last-name">Фамилия</label>
-            <input id="doctor-last-name" type="text">
+            <input id="doctor-last-name" type="text" name="last_name">
             <label for="doctor-first-name">Имя</label>
-            <input id="doctor-first-name" type="text">
+            <input id="doctor-first-name" type="text" name="first_name">
             <label for="doctor-patronymic">Отчество</label>
-            <input id="doctor-patronymic" type="text">
+            <input id="doctor-patronymic" type="text" name="patronymic">
             <label for="doctor-birth-date">Дата рождения</label>
-            <input id="doctor-birth-date" type="date">
+            <input id="doctor-birth-date" type="date" name="date_of_birth">
             <label for="doctor-position">Должность</label>
-            <input id="doctor-position" type="text">
+            <input id="doctor-position" type="text" name="position">
             <label for="doctor-specialization">Специализация</label>
-            <select id="doctor-specialization">
-                <option value="1">Хирург</option>
-                <option value="2">Терапевт</option>
-            </select>
+            <?php
+            //var_dump($specializations);
+            echo '<select id="doctor-specialization">';
+            foreach ($specializations as $specialization) {
+                echo "<option value=\"$specialization->id_specialization\">" . $specialization->specialization_name . '</option>';
+            }
+
+            echo '</select>';
+            ?>
             <input type="submit" value="Добавить">
         </form>
     </div>

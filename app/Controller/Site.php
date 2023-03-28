@@ -4,6 +4,7 @@ namespace Controller;
 
 use Model\Post;
 use Model\User;
+use Model\Specializations;
 use Src\Request;
 use Src\View;
 use Src\Auth\Auth;
@@ -45,7 +46,9 @@ class Site
 
     public function adminPanel(Request $request): string
     {
-        return new View('site.admin');
+        $specializations = Specializations::all();
+        //var_dump($specializations);
+        return (new View())->render('site.admin', ['specializations' => $specializations]);
     }
 
     public function choices(Request $request): string
