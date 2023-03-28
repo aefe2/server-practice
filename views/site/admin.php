@@ -69,7 +69,7 @@
             <input type="text" name="login" id="login">
             <label for="password">Пароль</label>
             <input id="password" name="password" type="password">
-            <input type="submit" value="Зарегестрироваться">
+            <input type="submit" value="Добавить">
         </form>
     </div>
     <h3><?= $message ?? ''; ?></h3>
