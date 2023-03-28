@@ -10,4 +10,10 @@ class Patient extends Model
     use HasFactory;
 
     public $timestamps = false;
+    protected $fillable = [
+        'first_name',
+        'last_name',
+        'patronymic',
+        'date_of_birth',
+    ];
 }

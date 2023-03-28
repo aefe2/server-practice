@@ -14,7 +14,7 @@
             <input id="doctor-position" type="text" name="position">
             <label for="doctor-specialization">Специализация</label>
             <?php
-//            var_dump($specializations);
+            //            var_dump($specializations);
             echo '<select id="doctor-specialization">';
             foreach ($specializations as $specialization) {
                 echo "<option value=\"$specialization->id_specialization\">" . $specialization->specialization_name . '</option>';
@@ -60,6 +60,11 @@
             <input type="text" name="last_name" id="last-name">
             <label for="patronymic">Отчество</label>
             <input type="text" name="patronymic" id="patronymic">
+            <label for="role">Роль</label>
+            <select name="role" id="role">
+                <option value="0">Регистратор медицинский</option>
+                <option value="1">Администратор</option>
+            </select>
             <label for="login">Логин</label>
             <input type="text" name="login" id="login">
             <label for="password">Пароль</label>
