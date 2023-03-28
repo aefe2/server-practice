@@ -47,10 +47,10 @@ class User extends Model implements IdentityInterface
             'password' => md5($credentials['password'])])->first();
     }
 
-    public function isAdmin() {
+    public function isAdmin()
+    {
         if ($this->fillable->role == '1') {
-            var_dump(123);
-            die();
-        }
+            return true;
+        } else return false;
     }
 }
