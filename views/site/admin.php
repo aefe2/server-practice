@@ -14,7 +14,7 @@
             <input id="doctor-position" type="text" name="position">
             <label for="doctor-specialization">Специализация</label>
             <?php
-            //var_dump($specializations);
+//            var_dump($specializations);
             echo '<select id="doctor-specialization">';
             foreach ($specializations as $specialization) {
                 echo "<option value=\"$specialization->id_specialization\">" . $specialization->specialization_name . '</option>';
@@ -43,15 +43,7 @@
         <h3>Записать пациента</h3>
         <form>
             <label for="patient-choice">ФИО пациента</label>
-<!--            --><?php
-//            //var_dump($specializations);
-//            echo '<select id="patient-choice">';
-//            foreach ($specializations as $specialization) {
-//                echo "<option value=\"$specialization->id_specialization\">" . $specialization->specialization_name . '</option>';
-//            }
-//
-//            echo '</select>';
-//            ?>
+            <input id="patient-choice" type="text">
             <label for="record-date">Дата приема</label>
             <input id="record-date" type="date">
             <label for="record-time">Время приема</label>
@@ -59,4 +51,21 @@
             <input type="submit" value="Добавить">
         </form>
     </div>
+    <div class="register-form">
+        <h3>Добавление нового пользователя</h3>
+        <form method="post">
+            <label for="first-name">Имя</label>
+            <input type="text" name="name" id="first-name">
+            <label for="last-name">Фамилия</label>
+            <input type="text" name="last_name" id="last-name">
+            <label for="patronymic">Отчество</label>
+            <input type="text" name="patronymic" id="patronymic">
+            <label for="login">Логин</label>
+            <input type="text" name="login" id="login">
+            <label for="password">Пароль</label>
+            <input id="password" name="password" type="password">
+            <input type="submit" value="Зарегестрироваться">
+        </form>
+    </div>
+    <h3><?= $message ?? ''; ?></h3>
 </div>

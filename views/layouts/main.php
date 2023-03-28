@@ -20,11 +20,17 @@
             if (!app()->auth::check()):
                 ?>
                 <a href="<?= app()->route->getUrl('/login') ?>">Вход</a>
-                <a href="<?= app()->route->getUrl('/signup') ?>">Регистрация</a>
+<!--                <a href="--><?php //= app()->route->getUrl('/signup') ?><!--">Регистрация</a>-->
             <?php
             else:
                 ?>
-                <a href="<?= app()->route->getUrl('/admin') ?>">Админ панель</a>
+                <?php
+                if (app()->auth::user()->role == 1):
+                    ?>
+                    <a href="<?= app()->route->getUrl('/admin') ?>">Админ панель</a>
+                <?php
+                endif;
+                ?>
                 <a href="<?= app()->route->getUrl('/choices') ?>">Перейти к выборке</a>
                 <a href="<?= app()->route->getUrl('/reception') ?>">Перейти к добавлению</a>
                 <a href="<?= app()->route->getUrl('/logout') ?>">Выход (<?= app()->auth::user()->name ?>)</a>

@@ -23,12 +23,20 @@ class Site
         return new View('site.hello', ['message' => 'Здравствуйте, ' . app()->auth::user()->name]);
     }
 
-    public function signup(Request $request): string
+    public function adminPanel(Request $request): string
+    {
+        $specializations = Specializations::all();
+//        $patient = Patient::all();
+        //var_dump($specializations);
+        return (new View())->render('site.admin', ['specializations' => $specializations]);
+    }
+
+    public function addUser(Request $request): string
     {
         if ($request->method === 'POST' && User::create($request->all())) {
-            app()->route->redirect('/login');
+            app()->route->redirect('/admin');
         }
-        return new View('site.signup');
+        return $this->adminPanel($request);
     }
 
     public function login(Request $request): string
@@ -43,14 +51,6 @@ class Site
         }
         //Если аутентификация не удалась, то сообщение об ошибке
         return new View('site.login', ['message' => 'Неправильные логин или пароль']);
-    }
-
-    public function adminPanel(Request $request): string
-    {
-        $specializations = Specializations::all();
-//        $patient = Patient::all();
-        //var_dump($specializations);
-        return (new View())->render('site.admin', ['specializations' => $specializations]);
     }
 
     public function choices(Request $request): string
