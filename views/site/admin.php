@@ -43,15 +43,15 @@
         <h3>Записать пациента</h3>
         <form>
             <label for="patient-choice">ФИО пациента</label>
-            <?php
-            //var_dump($specializations);
-            echo '<select id="patient-choice">';
-            foreach ($specializations as $specialization) {
-                echo "<option value=\"$specialization->id_specialization\">" . $specialization->specialization_name . '</option>';
-            }
-
-            echo '</select>';
-            ?>
+<!--            --><?php
+//            //var_dump($specializations);
+//            echo '<select id="patient-choice">';
+//            foreach ($specializations as $specialization) {
+//                echo "<option value=\"$specialization->id_specialization\">" . $specialization->specialization_name . '</option>';
+//            }
+//
+//            echo '</select>';
+//            ?>
             <label for="record-date">Дата приема</label>
             <input id="record-date" type="date">
             <label for="record-time">Время приема</label>

@@ -49,8 +49,9 @@ class User extends Model implements IdentityInterface
 
     public function isAdmin()
     {
-        if ($this->fillable->role == '1') {
+        if ($this->role == '1') {
             return true;
-        } else return false;
+        }
+        return false;
     }
 }

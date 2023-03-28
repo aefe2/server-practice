@@ -2,6 +2,7 @@
 
 namespace Middlewares;
 
+use Model\User;
 use Src\Auth\Auth;
 use Src\Request;
 

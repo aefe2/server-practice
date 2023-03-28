@@ -48,7 +48,7 @@ class Site
     public function adminPanel(Request $request): string
     {
         $specializations = Specializations::all();
-        $patient = Patient::all();
+//        $patient = Patient::all();
         //var_dump($specializations);
         return (new View())->render('site.admin', ['specializations' => $specializations]);
     }
