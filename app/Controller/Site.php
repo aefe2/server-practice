@@ -34,7 +34,7 @@ class Site
     public function addUser(Request $request): string
     {
         if ($request->method === 'POST' && User::create($request->all())) {
-            app()->route->redirect('/admin');
+            return $this->adminPanel($request);
         }
         return $this->adminPanel($request);
     }
