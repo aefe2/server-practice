@@ -4,7 +4,7 @@ return [
     'host' => 'localhost',
     'database' => 'mvc',
     'username' => 'root',
-    'password' => '',
+    'password' => 'QWEasd123',
     'charset' => 'utf8',
     'collation' => 'utf8_unicode_ci',
     'prefix' => '',

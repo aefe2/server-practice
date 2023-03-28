@@ -423,7 +423,7 @@ h3, h2 {
     color: black;
 }
 
-.footer {
+footer {
     display: flex;
     background-color: rgba(217, 217, 217, 43%);
     margin-top: 10px;
@@ -432,12 +432,12 @@ h3, h2 {
     align-items: center;
 }
 
-.footer > span {
+footer > span {
     text-transform: uppercase;
     filter: opacity(50%);
 }
 
-.footer > img {
+footer > img {
     margin-right: 10px;
     width: 30px;
     height: 30px;
