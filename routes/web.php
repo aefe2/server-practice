@@ -2,10 +2,9 @@
 
 use Src\Route;
 
-
 Route::add('GET', '/hello', [Controller\Site::class, 'hello'])->middleware('auth');
-Route::group('/admin', function (){
-    Route::add('GET', '/admin-panel', [Controller\Admin::class, 'adminPanel'])->middleware('admin');
+Route::group('/admin', function () {
+    Route::add('GET', '/admin', [Controller\Admin::class, 'adminPanel'])->middleware('admin');
     Route::add('POST', '/add-user', [Controller\Admin::class, 'addUser'])->middleware('admin');
 });
 Route::add(['GET', 'POST'], '/login', [Controller\Site::class, 'login']);

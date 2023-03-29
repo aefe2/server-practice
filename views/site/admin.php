@@ -53,7 +53,7 @@
     </div>
     <div class="register-form">
         <h3>Добавление нового пользователя</h3>
-        <form method="post">
+        <form action="/server-practice/admin/add-user" method="post">
             <label for="first-name">Имя</label>
             <input type="text" name="name" id="first-name">
             <label for="last-name">Фамилия</label>
