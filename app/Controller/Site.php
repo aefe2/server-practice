@@ -12,31 +12,10 @@ use Src\Auth\Auth;
 
 class Site
 {
-    public function index(Request $request): string
-    {
-        $posts = Post::all()->get();
-        return (new View())->render('site.post', ['posts' => $posts]);
-    }
 
     public function hello(): string
     {
         return new View('site.hello', ['message' => 'Здравствуйте, ' . app()->auth::user()->name]);
-    }
-
-    public function adminPanel(Request $request): string
-    {
-        $specializations = Specializations::all();
-//        $patient = Patient::all();
-        //var_dump($specializations);
-        return (new View())->render('site.admin', ['specializations' => $specializations]);
-    }
-
-    public function addUser(Request $request): string
-    {
-        if ($request->method === 'POST' && User::create($request->all())) {
-            return $this->adminPanel($request);
-        }
-        return $this->adminPanel($request);
     }
 
     public function login(Request $request): string
