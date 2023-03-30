@@ -31,21 +31,23 @@
     </div>
     <div class="add-patient-form">
         <h3>Добавить пациента</h3>
-        <form>
+        <form method="post" action="/server-practice/admin/add-patient">
+            <input name="csrf_token" type="hidden" value="<?= app()->auth::generateCSRF() ?>"/>
             <label for="patient-first-name">Имя</label>
-            <input id="patient-first-name" type="text">
+            <input id="patient-first-name" type="text" name="first_name">
             <label for="patient-last-name">Фамилия</label>
-            <input id="patient-last-name" type="text">
+            <input id="patient-last-name" type="text" name="last_name">
             <label for="patient-patronymic">Отчество</label>
-            <input id="patient-patronymic" type="text">
+            <input id="patient-patronymic" type="text" name="patronymic">
             <label for="patient-birth-date">Дата рождения</label>
-            <input id="patient-birth-date" type="date">
+            <input id="patient-birth-date" type="date" name="date_of_birth">
             <input type="submit" value="Добавить">
         </form>
     </div>
     <div class="patient-record-form">
         <h3>Записать пациента</h3>
-        <form>
+        <form method="post" action="/server-practice/admin/patient-appointment">
+            <input name="csrf_token" type="hidden" value="<?= app()->auth::generateCSRF() ?>"/>
             <label for="patient-choice">ФИО пациента</label>
             <input id="patient-choice" type="text">
             <label for="record-date">Дата приема</label>
