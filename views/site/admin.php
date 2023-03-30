@@ -54,6 +54,7 @@
         <h3>Добавление нового пользователя</h3>
         <label><?= $message ?? ''; ?></label>
         <form action="/server-practice/admin/add-user" method="post">
+            <input name="csrf_token" type="hidden" value="<?= app()->auth::generateCSRF() ?>"/>
             <label for="first-name">Имя</label>
             <input type="text" name="name" id="first-name">
             <label for="last-name">Фамилия</label>

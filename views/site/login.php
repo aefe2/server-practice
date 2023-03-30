@@ -4,8 +4,10 @@ if (!app()->auth::check()):
     ?>
     <div class="form">
         <div class="login-form">
+            <label><?= $message ?? ''; ?></label>
             <h3>Авторизация</h3>
             <form method="post">
+                <input name="csrf_token" type="hidden" value="<?= app()->auth::generateCSRF() ?>"/>
                 <label for="login">Логин</label>
                 <input name="login" type="text" id="login">
                 <label for="password">Пароль</label>
@@ -13,6 +15,5 @@ if (!app()->auth::check()):
                 <input type="submit" value="Войти">
             </form>
         </div>
-        <h3><?= $message ?? ''; ?></h3>
     </div>
 <?php endif;
