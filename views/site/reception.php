@@ -1,3 +1,6 @@
+<div class="messages">
+    <label><?= $message ?? ''; ?></label>
+</div>
 <div class="forms">
     <div class="patient-record-form">
         <h3>Записать пациента</h3>
@@ -19,15 +22,16 @@
     </div>
     <div class="add-patient-form">
         <h3>Зарегистрировать пациента</h3>
-        <form>
+        <form method="post" action="/server-practice/reception/register-patient">
+            <input name="csrf_token" type="hidden" value="<?= app()->auth::generateCSRF() ?>"/>
             <label for="patient-first-name">Имя</label>
-            <input id="patient-first-name" type="text">
+            <input id="patient-first-name" type="text" name="first_name">
             <label for="patient-last-name">Фамилия</label>
-            <input id="patient-last-name" type="text">
+            <input id="patient-last-name" type="text" name="last_name">
             <label for="patient-patronymic">Отчество</label>
-            <input id="patient-patronymic" type="text">
+            <input id="patient-patronymic" type="text" name="patronymic">
             <label for="patient-birth-date">Дата рождения</label>
-            <input id="patient-birth-date" type="date">
+            <input id="patient-birth-date" type="date" name="date_of_birth">
             <input type="submit" value="Добавить">
         </form>
     </div>
