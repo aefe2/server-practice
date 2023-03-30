@@ -8,5 +8,9 @@ return [
     'routeMiddleware' => [
         'auth' => \Middlewares\AuthMiddleware::class,
         'admin' => \Middlewares\AdminMiddleware::class,
+    ],
+    'validators' => [
+        'required' => \Validators\RequireValidator::class,
+        'unique' => \Validators\UniqueValidator::class
     ]
 ];
