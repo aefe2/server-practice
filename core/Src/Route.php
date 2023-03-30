@@ -82,7 +82,7 @@ class Route
         }
         $uri = rawurldecode($uri);
         $uri = substr($uri, strlen($this->prefix));
-        //var_dump($uri);die();
+
         $dispatcher = new Dispatcher($this->routeCollector->getData());
 
         $routeInfo = $dispatcher->dispatch($httpMethod, $uri);
@@ -94,11 +94,13 @@ class Route
             case Dispatcher::FOUND:
                 $handler = $routeInfo[1];
                 $vars = array_values($routeInfo[2]);
-                $vars[] = Middleware::single()->runMiddlewares($httpMethod, $uri);
+//Вызываем обработку всех Middleware
+                $vars[] = Middleware::single()->go($httpMethod, $uri, new Request());
                 $class = $handler[0];
                 $action = $handler[1];
                 call_user_func([new $class, $action], ...$vars);
                 break;
         }
     }
+
 }
