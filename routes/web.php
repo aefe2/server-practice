@@ -8,6 +8,7 @@ Route::group('/admin', function () {
     Route::add('POST', '/add-user', [Controller\Admin::class, 'addUser'])->middleware('admin');
     Route::add('POST', '/add-doctor', [Controller\Admin::class, 'addDoctor'])->middleware('admin');
     Route::add('POST', '/add-patient', [Controller\Admin::class, 'addPatient'])->middleware('admin');
+    Route::add('POST', '/appointment', [Controller\Admin::class, 'patientAppointment'])->middleware('admin');
 });
 Route::add('POST', '/reception/register-patient', [Controller\Moderator::class, 'addPatient']);
 Route::add(['GET', 'POST'], '/login', [Controller\Site::class, 'login']);

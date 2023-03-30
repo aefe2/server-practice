@@ -2,6 +2,7 @@
 
 namespace Controller;
 
+use Model\Appointment;
 use Model\Doctor;
 use Model\Patient;
 use Model\User;
@@ -10,13 +11,35 @@ use Src\Request;
 use Src\View;
 use Src\Validator\Validator;
 
+
 class Admin
 {
 
     public function adminPanel(Request $request): string
     {
         $specializations = Specializations::all();
-        return (new View())->render('site.admin', ['specializations' => $specializations]);
+        $full_names = Patient::all();
+        return (new View())->render('site.admin', ['specializations' => $specializations, 'full_names' => $full_names]);
+    }
+
+    public function patientAppointment(Request $request): string
+    {
+        if ($request->method === 'POST') {
+            $validator = new Validator($request->all(), [
+                'appointment_date' => ['required'],
+                'appointment_time' => ['required']
+            ], [
+                'required' => 'Поле :field пусто'
+            ]);
+            if ($validator->fails()) {
+                return new View('site.admin',
+                    ['message' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE)]);
+            }
+            if (Appointment::create($request->all())) {
+                app()->route->redirect('/admin');
+            }
+        }
+        return (new View())->render('site.admin');
     }
 
     public function addDoctor(Request $request): string
@@ -46,6 +69,7 @@ class Admin
     public function addPatient(Request $request): string
     {
         if ($request->method === 'POST') {
+
             $validator = new Validator($request->all(), [
                 'first_name' => ['required'],
                 'last_name' => ['required'],
@@ -93,6 +117,5 @@ class Admin
             }
             return $this->adminPanel($request);
         }
-
     }
 }

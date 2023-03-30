@@ -39,8 +39,8 @@
             <input id="patient-last-name" type="text" name="last_name">
             <label for="patient-patronymic">Отчество</label>
             <input id="patient-patronymic" type="text" name="patronymic">
-            <label for="patient-medcard">Фото медкарты</label>
-            <input id="patient-medcard" type="file" name="medcard_photo">
+            <!--            <label for="patient-medcard">Фото медкарты</label>-->
+            <!--            <input id="patient-medcard" type="file" name="medcard_photo">-->
             <label for="patient-birth-date">Дата рождения</label>
             <input id="patient-birth-date" type="date" name="date_of_birth">
             <input type="submit" value="Добавить">
@@ -51,11 +51,19 @@
         <form method="post" action="/server-practice/admin/patient-appointment">
             <input name="csrf_token" type="hidden" value="<?= app()->auth::generateCSRF() ?>"/>
             <label for="patient-choice">ФИО пациента</label>
-            <input id="patient-choice" type="text">
+            <?php
+            echo '<select id="patient-choice" name="id_medcard">';
+            foreach ($full_names as $patient) {
+                echo "<option value=\"$patient->id_medcard\">"
+                    . mb_substr($patient->last_name, 0, 1) . '.' . mb_substr($patient->first_name, 0, 1) . '.' . mb_substr($patient->patronymic, 0, 1) .
+                    "</option>";
+            }
+            echo '</select>';
+            ?>
             <label for="record-date">Дата приема</label>
-            <input id="record-date" type="date">
+            <input id="record-date" type="date" name="appointment_date">
             <label for="record-time">Время приема</label>
-            <input id="record-time" type="time">
+            <input id="record-time" type="time" name="appointment_time">
             <input type="submit" value="Добавить">
         </form>
     </div>
