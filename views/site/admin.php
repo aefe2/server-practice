@@ -1,7 +1,7 @@
 <div class="forms">
     <div class="add-doctor-form">
         <h3>Добавить врача</h3>
-        <form method="post">
+        <form action="" method="post">
             <label for="doctor-last-name">Фамилия</label>
             <input id="doctor-last-name" type="text" name="last_name">
             <label for="doctor-first-name">Имя</label>
@@ -14,7 +14,6 @@
             <input id="doctor-position" type="text" name="position">
             <label for="doctor-specialization">Специализация</label>
             <?php
-            //            var_dump($specializations);
             echo '<select id="doctor-specialization">';
             foreach ($specializations as $specialization) {
                 echo "<option value=\"$specialization->id_specialization\">" . $specialization->specialization_name . '</option>';
