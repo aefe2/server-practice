@@ -52,6 +52,7 @@
     </div>
     <div class="register-form">
         <h3>Добавление нового пользователя</h3>
+        <label><?= $message ?? ''; ?></label>
         <form action="/server-practice/admin/add-user" method="post">
             <label for="first-name">Имя</label>
             <input type="text" name="name" id="first-name">
@@ -71,5 +72,4 @@
             <input type="submit" value="Добавить">
         </form>
     </div>
-    <h3><?= $message ?? ''; ?></h3>
 </div>
