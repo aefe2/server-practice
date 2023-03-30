@@ -14,6 +14,7 @@ return [
         'unique' => \Validators\UniqueValidator::class
     ],
     'routeAppMiddleware' => [
-        'trim' => \Middlewares\TrimMiddleware::class
+        'trim' => \Middlewares\TrimMiddleware::class,
+        'specialChars' => \Middlewares\SpecialCharsMiddleware::class
     ]
 ];
