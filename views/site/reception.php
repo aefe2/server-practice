@@ -22,7 +22,7 @@
     </div>
     <div class="add-patient-form">
         <h3>Зарегистрировать пациента</h3>
-        <form method="post" action="/server-practice/reception/register-patient">
+        <form method="post" enctype="multipart/form-data" action="/server-practice/reception/register-patient">
             <input name="csrf_token" type="hidden" value="<?= app()->auth::generateCSRF() ?>"/>
             <label for="patient-first-name">Имя</label>
             <input id="patient-first-name" type="text" name="first_name">
@@ -31,7 +31,7 @@
             <label for="patient-patronymic">Отчество</label>
             <input id="patient-patronymic" type="text" name="patronymic">
             <label for="patient-medcard">Фото медкарты</label>
-            <input id="patient-medcard" type="image" name="medcard_photo">
+            <input id="patient-medcard" type="file" name="medcard_photo">
             <label for="patient-birth-date">Дата рождения</label>
             <input id="patient-birth-date" type="date" name="date_of_birth">
             <input type="submit" value="Добавить">

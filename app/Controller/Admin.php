@@ -58,6 +58,7 @@ class Admin
                 return new View('site.admin',
                     ['message' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE)]);
             }
+
             if (Patient::create($request->all())) {
                 app()->route->redirect('/admin');
             }

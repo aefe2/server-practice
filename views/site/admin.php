@@ -31,7 +31,7 @@
     </div>
     <div class="add-patient-form">
         <h3>Добавить пациента</h3>
-        <form method="post" action="/server-practice/admin/add-patient">
+        <form method="post" enctype="multipart/form-data" action="/server-practice/admin/add-patient">
             <input name="csrf_token" type="hidden" value="<?= app()->auth::generateCSRF() ?>"/>
             <label for="patient-first-name">Имя</label>
             <input id="patient-first-name" type="text" name="first_name">
