@@ -30,6 +30,8 @@
             <input id="patient-last-name" type="text" name="last_name">
             <label for="patient-patronymic">Отчество</label>
             <input id="patient-patronymic" type="text" name="patronymic">
+            <label for="patient-medcard">Фото медкарты</label>
+            <input id="patient-medcard" type="image" name="medcard_photo">
             <label for="patient-birth-date">Дата рождения</label>
             <input id="patient-birth-date" type="date" name="date_of_birth">
             <input type="submit" value="Добавить">

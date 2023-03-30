@@ -15,5 +15,6 @@ class Patient extends Model
         'last_name',
         'patronymic',
         'date_of_birth',
+        'medcard_photo'
     ];
 }
