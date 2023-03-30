@@ -443,3 +443,8 @@ footer > img {
     height: 30px;
     filter: grayscale(1) opacity(50%);
 }
+.messages {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}

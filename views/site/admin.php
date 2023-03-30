@@ -1,12 +1,17 @@
+<div class="messages">
+    <label><?= $message ?? ''; ?></label>
+</div>
 <div class="forms">
     <div class="add-doctor-form">
         <h3>Добавить врача</h3>
-        <form action="" method="post">
+        <form action="/server-practice/admin/add-doctor" method="post">
+            <input name="csrf_token" type="hidden" value="<?= app()->auth::generateCSRF() ?>"/>
             <label for="doctor-last-name">Фамилия</label>
             <input id="doctor-last-name" type="text" name="last_name">
             <label for="doctor-first-name">Имя</label>
             <input id="doctor-first-name" type="text" name="first_name">
             <label for="doctor-patronymic">Отчество</label>
+
             <input id="doctor-patronymic" type="text" name="patronymic">
             <label for="doctor-birth-date">Дата рождения</label>
             <input id="doctor-birth-date" type="date" name="date_of_birth">
@@ -14,7 +19,7 @@
             <input id="doctor-position" type="text" name="position">
             <label for="doctor-specialization">Специализация</label>
             <?php
-            echo '<select id="doctor-specialization">';
+            echo '<select id="doctor-specialization" name="id_specialization">';
             foreach ($specializations as $specialization) {
                 echo "<option value=\"$specialization->id_specialization\">" . $specialization->specialization_name . '</option>';
             }
@@ -52,7 +57,6 @@
     </div>
     <div class="register-form">
         <h3>Добавление нового пользователя</h3>
-        <label><?= $message ?? ''; ?></label>
         <form action="/server-practice/admin/add-user" method="post">
             <input name="csrf_token" type="hidden" value="<?= app()->auth::generateCSRF() ?>"/>
             <label for="first-name">Имя</label>

@@ -2,6 +2,7 @@
 
 namespace Controller;
 
+use Model\Doctor;
 use Model\User;
 use Model\Specializations;
 use Src\Request;
@@ -15,6 +16,30 @@ class Admin
     {
         $specializations = Specializations::all();
         return (new View())->render('site.admin', ['specializations' => $specializations]);
+    }
+
+    public function addDoctor(Request $request): string
+    {
+        if ($request->method === 'POST') {
+            $validator = new Validator($request->all(), [
+                'last_name' => ['required'],
+                'first_name' => ['required'],
+                'patronymic' => ['required'],
+                'date_of_birth' => ['required'],
+                'position' => ['required']
+            ], [
+                'required' => 'Поле :field пусто'
+            ]);
+            if ($validator->fails()) {
+                return new View('site.admin',
+                    ['message' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE)]);
+            }
+            if (Doctor::create($request->all())) {
+                return $this->adminPanel($request);
+            }
+
+        }
+        return (new View())->render('site.admin');
     }
 
     public function addUser(Request $request): string
