@@ -26,13 +26,13 @@
     <div class="diagnosis-results">
         <h3>Результат выборки</h3>
         <div class="results">
-<!--            --><?php
-//            foreach ($patientDiagnoses as $patientDiagnosis) {
-//                var_dump($patientDiagnosis);
-//                die();
-//                echo "<span>" . $patientDiagnosis . "</span>";
-//            }
-//            ?>
+            <!--            --><?php
+            //            foreach ($patientDiagnoses as $patientDiagnosis) {
+            //                var_dump($patientDiagnosis);
+            //                die();
+            //                echo "<span>" . $patientDiagnosis . "</span>";
+            //            }
+            //            ?>
         </div>
         <div class="results">
             <span>Фамилия</span><span>Иванов</span>
@@ -43,12 +43,20 @@
     </div>
     <div class="choose-all-patients">
         <h3>Выбрать всех пациентов</h3>
-        <form>
+        <form action="/server-practice/choices/all-patients" method="post">
+            <input name="csrf_token" type="hidden" value="<?= app()->auth::generateCSRF() ?>"/>
             <label for="doctor-record">Врач, к которому запись</label>
-            <select id="doctor-record">
-                <option value="1">Иванов Иван Иванович</option>
-                <option value="2">Петров Петр Петрович</option>
-            </select>
+            <?php
+            echo '<select id="patient_diagnoses" name="id_doctor">';
+            foreach ($allDoctors as $doctor) {
+                echo "<option value=\"$doctor->id_doctor\">"
+                    . $doctor->last_name . ' '
+                    . substr($doctor->first_name, 0, 1) . '.'
+                    . substr($doctor->patronymic, 0, 1) .
+                    "</option>";
+            }
+            echo '</select>';
+            ?>
             <label for="record-date">Дата записи</label>
             <input id="record-date" type="date">
             <input type="submit" value="Выбрать">
