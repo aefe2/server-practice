@@ -69,7 +69,6 @@ class Admin
     public function addPatient(Request $request): string
     {
         if ($request->method === 'POST') {
-
             $validator = new Validator($request->all(), [
                 'first_name' => ['required'],
                 'last_name' => ['required'],
@@ -83,6 +82,13 @@ class Admin
                     ['message' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE)]);
             }
 
+            if (isset($_FILES['medcard_photo'])) {
+                $fileTmpName = $_FILES['medcard_photo']['tmp_name'];
+                $pathWeb = '/server-practice/public/uploads/' . $_FILES['medcard_photo']['name'];
+                $path = $_SERVER['DOCUMENT_ROOT'] . $pathWeb;
+                move_uploaded_file($fileTmpName, $path);
+            }
+
             if (Patient::create($request->all())) {
                 app()->route->redirect('/admin');
             }
@@ -92,30 +98,29 @@ class Admin
 
     public function addUser(Request $request): string
     {
-        {
-            if ($request->method === 'POST') {
 
-                $validator = new Validator($request->all(), [
-                    'name' => ['required'],
-                    'last_name' => ['required'],
-                    'patronymic' => ['required'],
-                    'login' => ['required', 'unique:users,login'],
-                    'password' => ['required']
-                ], [
-                    'required' => 'Поле :field пусто',
-                    'unique' => 'Поле :field должно быть уникально'
-                ]);
+        if ($request->method === 'POST') {
+            $validator = new Validator($request->all(), [
+                'name' => ['required'],
+                'last_name' => ['required'],
+                'patronymic' => ['required'],
+                'login' => ['required', 'unique:users,login'],
+                'password' => ['required']
+            ], [
+                'required' => 'Поле :field пусто',
+                'unique' => 'Поле :field должно быть уникально'
+            ]);
 
-                if ($validator->fails()) {
-                    return new View('site.admin',
-                        ['message' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE)]);
-                }
-
-                if (User::create($request->all())) {
-                    app()->route->redirect('/admin');
-                }
+            if ($validator->fails()) {
+                return new View('site.admin',
+                    ['message' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE)]);
             }
-            return $this->adminPanel($request);
+
+            if (User::create($request->all())) {
+                app()->route->redirect('/admin');
+            }
         }
+        return $this->adminPanel($request);
+
     }
 }
