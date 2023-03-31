@@ -69,8 +69,6 @@
                     "</option>";
             }
             echo '</select>';
-            //            var_dump($doctor);
-            //            die();
             ?>
             <label for="record-date">Дата приема</label>
             <input id="record-date" type="date" name="appointment_date">
