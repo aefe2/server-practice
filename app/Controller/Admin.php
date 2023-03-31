@@ -3,6 +3,9 @@
 namespace Controller;
 
 use Model\Appointment;
+use Model\Cabinet;
+use Model\Diagnoses;
+use Model\Diagnosis;
 use Model\Doctor;
 use Model\Patient;
 use Model\User;
@@ -19,11 +22,18 @@ class Admin
 
     public function adminPanel(Request $request): string
     {
+        $cabinets = Cabinet::all();
         $doctors = DB::table('doctors')->join('specializations', 'id_doctor', '=', 'specializations.id_specialization')->get();
         $specializations = Specializations::all();
-//        $specializations = DB::table('specializations')-
         $full_names = Patient::all();
-        return (new View())->render('site.admin', ['specializations' => $specializations, 'full_names' => $full_names, 'doctors' => $doctors]);
+        $diagnoses = Diagnoses::all();
+        return (new View())->render('site.admin', [
+            'specializations' => $specializations,
+            'full_names' => $full_names,
+            'doctors' => $doctors,
+            'cabinets' => $cabinets,
+            'diagnoses' => $diagnoses
+        ]);
     }
 
     public function patientAppointment(Request $request): string
@@ -88,15 +98,16 @@ class Admin
 
             $fileUploader = new FileUploader($_FILES['medcard_photo']);
 
-            $destination = '/server-practice/public/uploads/';
+            $destination = 'uploads/';
+//            $destination = '/server-practice/public/uploads/';
             $allowedTypes = ['image/jpeg', 'image.png'];
-            //Макс размер в битах
+            //Макс размер в битах, 2.5Мб в данный момент
             $maxSize = 20971520;
 
             $newFileName = $fileUploader->upload($destination, $allowedTypes, $maxSize);
-
             if (Patient::create($request->all())) {
-                app()->route->redirect('/admin');
+//                app()->route->redirect('/admin');
+                return (new View())->render('site.admin');
             }
         }
         return (new View())->render('site.admin');

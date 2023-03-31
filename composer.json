@@ -1,27 +1,25 @@
 {
-    "name": "aefe2/server-practice",
-    "description": "EP on server side foundation",
-    "type": "project",
-    "license": "MIT",
-    "authors": [
-      {
-        "name": "aefe2",
-        "email": "shigaev_1990@mail.ru"
-      }
-    ],
-  "minimum-stability": "dev",
-    "require": {
-        "php": "^7.4 | ^8.0",
-        "illuminate/database": "^9.0@dev",
-        "illuminate/events": "^9.0@dev",
-        "nikic/fast-route": "^2.0@dev",
-      "ext-json": "*",
-      "ext-mysqli": "*"
-    },
-    "autoload": {
-      "psr-4": {
-        "Src\\": "core/Src/",
-        "": "app/"
-      }
+  "name": "aefe2/server-practice",
+  "description": "EP on server side foundation",
+  "type": "project",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "aefe2",
+      "email": "shigaev_1990@mail.ru"
     }
+  ],
+  "minimum-stability": "dev",
+  "require": {
+    "php": "^7.4 | ^8.0",
+    "illuminate/database": "^9.0@dev",
+    "illuminate/events": "^9.0@dev",
+    "nikic/fast-route": "^2.0@dev"
+  },
+  "autoload": {
+    "psr-4": {
+      "Src\\": "core/Src/",
+      "": "app/"
+    }
+  }
 }

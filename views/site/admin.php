@@ -39,6 +39,16 @@
             <input id="patient-last-name" type="text" name="last_name">
             <label for="patient-patronymic">Отчество</label>
             <input id="patient-patronymic" type="text" name="patronymic">
+            <label for="diagnosis">Диагноз</label>
+            <?php
+            echo '<select id="diagnosis-choice" name="id_diagnosis">';
+            foreach ($diagnoses as $diagnosis) {
+                echo "<option value=\"$diagnosis->id_diagnosis\">"
+                    . $diagnosis->diagnosis_name .
+                    "</option>";
+            }
+            echo '</select>';
+            ?>
             <label for="patient-medcard">Фото медкарты</label>
             <input id="patient-medcard" type="file" name="medcard_photo">
             <label for="patient-birth-date">Дата рождения</label>
@@ -55,7 +65,7 @@
             echo '<select id="patient-choice" name="id_medcard">';
             foreach ($full_names as $patient) {
                 echo "<option value=\"$patient->id_medcard\">"
-                    . $patient->last_name . ' ' . $patient->first_name . ' ' . $patient->patronymic .
+                    . $patient->last_name . ' ' . substr($patient->first_name, 0, 1) . '.' . substr($patient->patronymic, 0, 1) . '.' .
                     "</option>";
             }
             echo '</select>';
@@ -65,7 +75,9 @@
             echo '<select id="doctor-choice" name="id_doctor">';
             foreach ($doctors as $doctor) {
                 echo "<option value=\"$doctor->id_doctor\">"
-                    . $doctor->last_name . ' ' . $doctor->first_name . ' ' . $doctor->patronymic . ' - ' . $doctor->specialization_name .
+                    . $doctor->last_name . ' ' . substr($doctor->first_name, 0, 1) . '.'
+                    . substr($doctor->patronymic, 0, 1) . ' - '
+                    . $doctor->specialization_name .
                     "</option>";
             }
             echo '</select>';
@@ -74,6 +86,16 @@
             <input id="record-date" type="date" name="appointment_date">
             <label for="record-time">Время приема</label>
             <input id="record-time" type="time" name="appointment_time">
+            <label for="cabinet">Кабинет</label>
+            <?php
+            echo '<select id="cabinet" name="id_cabinet">';
+            foreach ($cabinets as $cabinet) {
+                echo "<option value=\"$cabinet->id_cabinet\">"
+                    . $cabinet->cabinet_number .
+                    "</option>";
+            }
+            echo '</select>';
+            ?>
             <input type="submit" value="Добавить">
         </form>
     </div>

@@ -126,7 +126,6 @@ h3, h2 {
 
 .add-patient-form > form {
     display: grid;
-    grid-template-columns: repeat(2, .5fr);
     align-items: center;
     padding: 30px;
     background-color: rgba(170, 170, 170, 5%);
@@ -162,7 +161,6 @@ h3, h2 {
 
 .patient-record-form > form {
     display: grid;
-    grid-template-columns: repeat(2, .5fr);
     align-items: center;
     padding: 30px;
     background-color: rgba(170, 170, 170, 5%);
