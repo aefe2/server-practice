@@ -2,6 +2,8 @@
 
 namespace Src\Validator;
 
+use DateTime;
+
 class Validator
 {
     //Разрешенные валидаторы
@@ -32,6 +34,15 @@ class Validator
             $this->validateField($fieldName, $fieldValidators);
         }
     }
+
+    //Валидация дня рождения
+//    public function validateBirthday($birthday)
+//    {
+//        $format = 'Y-m-d';
+//        $date = DateTime::createFromFormat($format, $birthday);
+//        $today = new DateTime();
+//        return $date && $date->format($format) === $birthday && $date <= $today;
+//    }
 
     //Валидация отдельного поля
     private function validateField(string $fieldName, array $fieldValidators): void
