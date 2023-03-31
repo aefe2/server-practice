@@ -41,9 +41,6 @@
             <input id="patient-patronymic" type="text" name="patronymic">
             <label for="patient-medcard">Фото медкарты</label>
             <input id="patient-medcard" type="file" name="medcard_photo">
-            <?php
-            var_dump($_FILES);
-            ?>
             <label for="patient-birth-date">Дата рождения</label>
             <input id="patient-birth-date" type="date" name="date_of_birth">
             <input type="submit" value="Добавить">
@@ -58,10 +55,22 @@
             echo '<select id="patient-choice" name="id_medcard">';
             foreach ($full_names as $patient) {
                 echo "<option value=\"$patient->id_medcard\">"
-                    . mb_substr($patient->last_name, 0, 1) . '.' . mb_substr($patient->first_name, 0, 1) . '.' . mb_substr($patient->patronymic, 0, 1) .
+                    . $patient->last_name . ' ' . $patient->first_name . ' ' . $patient->patronymic .
                     "</option>";
             }
             echo '</select>';
+            ?>
+            <label for="doctor-choice">Врач</label>
+            <?php
+            echo '<select id="doctor-choice" name="id_doctor">';
+            foreach ($doctors as $doctor) {
+                echo "<option value=\"$doctor->id_doctor\">"
+                    . $doctor->last_name . ' ' . $doctor->first_name . ' ' . $doctor->patronymic . ' - ' . $doctor->specialization_name .
+                    "</option>";
+            }
+            echo '</select>';
+            //            var_dump($doctor);
+            //            die();
             ?>
             <label for="record-date">Дата приема</label>
             <input id="record-date" type="date" name="appointment_date">

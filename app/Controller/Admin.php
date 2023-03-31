@@ -7,19 +7,23 @@ use Model\Doctor;
 use Model\Patient;
 use Model\User;
 use Model\Specializations;
+use Src\Files;
+use Src\FileUploader;
 use Src\Request;
 use Src\View;
 use Src\Validator\Validator;
-
+use Illuminate\Database\Capsule\Manager as DB;
 
 class Admin
 {
 
     public function adminPanel(Request $request): string
     {
+        $doctors = DB::table('doctors')->join('specializations', 'id_doctor', '=', 'specializations.id_specialization')->get();
         $specializations = Specializations::all();
+//        $specializations = DB::table('specializations')-
         $full_names = Patient::all();
-        return (new View())->render('site.admin', ['specializations' => $specializations, 'full_names' => $full_names]);
+        return (new View())->render('site.admin', ['specializations' => $specializations, 'full_names' => $full_names, 'doctors' => $doctors]);
     }
 
     public function patientAppointment(Request $request): string
@@ -82,12 +86,14 @@ class Admin
                     ['message' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE)]);
             }
 
-            if (isset($_FILES['medcard_photo'])) {
-                $fileTmpName = $_FILES['medcard_photo']['tmp_name'];
-                $pathWeb = '/server-practice/public/uploads/' . $_FILES['medcard_photo']['name'];
-                $path = $_SERVER['DOCUMENT_ROOT'] . $pathWeb;
-                move_uploaded_file($fileTmpName, $path);
-            }
+            $fileUploader = new FileUploader($_FILES['medcard_photo']);
+
+            $destination = '/server-practice/public/uploads/';
+            $allowedTypes = ['image/jpeg', 'image.png'];
+            //Макс размер в битах
+            $maxSize = 20971520;
+
+            $newFileName = $fileUploader->upload($destination, $allowedTypes, $maxSize);
 
             if (Patient::create($request->all())) {
                 app()->route->redirect('/admin');
