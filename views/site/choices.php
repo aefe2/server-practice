@@ -1,20 +1,38 @@
 <div class="forms">
     <div class="choose-all-diagnosis">
         <h3>Выбрать все диагнозы</h3>
-        <form>
+        <form method="get" action="">
+            <input name="csrf_token" type="hidden" value="<?= app()->auth::generateCSRF() ?>"/>
             <label for="all-patients">По всем пациентам</label>
             <input type="button" id="all-patients" value="Выбрать">
-            <label for="patient">По пациенту</label>
-            <input id="patient" type="text" placeholder="ФИО пациента">
+        </form>
+        <form method="get" action="/server-practice/choices/patient-diagnoses">
+            <input name="csrf_token" type="hidden" value="<?= app()->auth::generateCSRF() ?>"/>
+            <label for="patient_diagnoses">По пациенту</label>
+            <?php
+            echo '<select id="patient_diagnoses" name="id_medcard">';
+            foreach ($patients as $patient) {
+                echo "<option value=\"$patient->id_medcard\">"
+                    . $patient->last_name . ' '
+                    . substr($patient->first_name, 0, 1) . '.'
+                    . substr($patient->patronymic, 0, 1) .
+                    "</option>";
+            }
+            echo '</select>';
+            ?>
+            <input type="submit" value="Выбрать">
         </form>
     </div>
     <div class="diagnosis-results">
         <h3>Результат выборки</h3>
         <div class="results">
-            <span>Фамилия</span><span>Иванов</span>
-            <span>Имя</span> <span>Иван</span>
-            <span>Отчество</span> <span>Иванович</span>
-            <span>Дата рождения</span> <span>30.05.1990</span>
+<!--            --><?php
+//            foreach ($patientDiagnoses as $patientDiagnosis) {
+//                var_dump($patientDiagnosis);
+//                die();
+//                echo "<span>" . $patientDiagnosis . "</span>";
+//            }
+//            ?>
         </div>
         <div class="results">
             <span>Фамилия</span><span>Иванов</span>
