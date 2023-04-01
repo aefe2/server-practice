@@ -79,11 +79,18 @@
     </div>
     <div class="choose-all-doctors">
         <h3>Выбрать всех врачей к которым записан пациент</h3>
-        <form>
+        <form method="get" action="/server-practice/choices/all-doctors">
             <label for="patient-choice">Пациент</label>
-            <select id="patient-choice">
-                <option value="1">Иванов Иван Иванович</option>
-            </select>
+            <?php
+            echo '<select id="patient-choice" name="id_medcard">';
+            foreach ($patients as $patient) {
+                echo "<option value=\"$patient->id_medcard\">"
+                    . $patient->last_name . ' '
+                    . substr($patient->first_name, 0, 1) . '.'
+                    . substr($patient->patronymic, 0, 1) . '</option>';
+            }
+            echo '</select>';
+            ?>
             <input type="submit" value="Выбрать">
         </form>
     </div>

@@ -38,6 +38,11 @@ class Search
         return new View('site.choices', ['patientDiagnoses' => $patientDiagnoses]);
     }
 
+    public function allDoctors(Request $request)
+    {
+        $doctors = DB::table('doctors')->where('');
+    }
+
     public function getAllPatients(Request $request)
     {
 

@@ -2,6 +2,8 @@
 
 namespace Src;
 
+use Illuminate\Database\Capsule\Manager as DB;
+
 class FileUploader
 {
     private $fileName;
@@ -20,20 +22,21 @@ class FileUploader
     public function upload($destination, $allowedTypes, $maxSize)
     {
         $extension = pathinfo($this->fileName, PATHINFO_EXTENSION);
-        $error = '';
+
+        $message = '';
 
         //Проверка на тип файла
         if (!in_array($this->fileType, $allowedTypes)) {
-            $error .= 'Не поддерживаемый тип файла';
+            $message .= 'Не поддерживаемый тип файла';
         }
 
         //Проверка на макс размер фалйа
         if ($this->fileSize > $maxSize) {
-            $error .= 'Файл слишком большой';
+            $message .= 'Файл слишком большой';
         }
 
         //Проверка есть ли ошибки при загрузке
-        if ($error) return $error;
+        if ($message) return $message;
 
         //Новое имя для файла
         $newFileName = uniqid() . '.' . $extension;
@@ -42,8 +45,11 @@ class FileUploader
         //Перемещение файла
         if (!move_uploaded_file($this->fileTempName, $destination)) return 'Ошибка - файл не может быть загружен';
 
-        //Возврат нового имени файла для бд
-        return $newFileName;
+        //Возврат нового имени файла
+//        $patients = DB::table('patients')->insert(['medcard_photo' => $newFileName]);
+//        return DB::table('patients')->insert(['medcard_photo' => $destination]);
+
+        return $destination;
     }
 //    public function uploadFile(): string
 //    {

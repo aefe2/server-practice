@@ -96,16 +96,18 @@ class Admin
 
             $fileUploader = new FileUploader($_FILES['medcard_photo']);
 
-            $destination = 'uploads/';
+            $destination = 'uploads';
 //            $destination = '/server-practice/public/uploads/';
-            $allowedTypes = ['image/jpeg', 'image.png'];
+            $allowedTypes = ['image/jpeg', 'image.png', 'image/jpg'];
             //Макс размер в битах, 2.5Мб в данный момент
             $maxSize = 20971520;
 
             $newFileName = $fileUploader->upload($destination, $allowedTypes, $maxSize);
+
+
             if (Patient::create($request->all())) {
 //                app()->route->redirect('/admin');
-                return (new View())->render('site.admin');
+                return (new View())->render('site.admin', ['destination' => $destination]);
             }
         }
         return (new View())->render('site.admin');
