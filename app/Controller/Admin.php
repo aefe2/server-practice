@@ -103,9 +103,15 @@ class Admin
             $maxSize = 20971520;
 
             $newFileName = $fileUploader->upload($destination, $allowedTypes, $maxSize);
+            var_dump($newFileName);
+            die();
 
+            $obj = Patient::create($request->all);
+            $obj->имяПоля= $newFileName;
+            $obj->save();
 
             if (Patient::create($request->all())) {
+
 //                app()->route->redirect('/admin');
                 return (new View())->render('site.admin', ['destination' => $destination]);
             }
