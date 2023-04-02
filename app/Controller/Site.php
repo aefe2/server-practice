@@ -2,13 +2,6 @@
 
 namespace Controller;
 
-use Illuminate\Database\Capsule\Manager as DB;
-use Model\Cabinet;
-use Model\Diagnoses;
-use Model\Post;
-use Model\User;
-use Model\Specializations;
-use Model\Patient;
 use Src\Request;
 use Src\View;
 use Src\Auth\Auth;

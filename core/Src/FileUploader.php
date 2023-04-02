@@ -49,7 +49,7 @@ class FileUploader
 //        $patients = DB::table('patients')->insert(['medcard_photo' => $newFileName]);
 //        return DB::table('patients')->insert(['medcard_photo' => $destination]);
 
-        return $destination;
+        return $newFileName;
     }
 //    public function uploadFile(): string
 //    {

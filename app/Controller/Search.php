@@ -33,8 +33,8 @@ class Search
 
     public function patientDiagnoses(Request $request)
     {
-        $patientId = $_POST['id_medcard'];
-        $patientDiagnoses = DB::table('diagnoses')->where('id_diagnosis', '=', 2);
+        $patientId = $_GET['id_medcard'];
+        $patientDiagnoses = DB::table('diagnoses')->where('id_diagnosis', '=', $patientId);
         return new View('site.choices', ['patientDiagnoses' => $patientDiagnoses]);
     }
 
