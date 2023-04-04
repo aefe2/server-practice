@@ -1,9 +1,8 @@
 <div class="forms">
     <div class="choose-all-diagnosis">
         <h3>Выбрать все диагнозы</h3>
-        <form method="get" action="">
-            <input name="csrf_token" type="hidden" value="<?= app()->auth::generateCSRF() ?>"/>
-            <label for="all-patients">По всем пациентам</label>
+        <form method="get" action="/server-practice/all-diagnoses">
+            <label for="all-patients">Все диагнозы</label>
             <input type="button" id="all-patients" value="Выбрать">
         </form>
         <form method="get" action="/server-practice/patient-diagnoses">

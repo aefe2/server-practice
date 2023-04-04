@@ -67,4 +67,9 @@ class Search
         return (new View())->render('site.results', ['patients' => $patients]);
     }
 
+    public function getDoctors()
+    {
+        
+    }
+
 }
