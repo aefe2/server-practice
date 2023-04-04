@@ -10,6 +10,7 @@ use Model\Patient;
 use Model\Specializations;
 use Src\Request;
 use Src\View;
+//use Illuminate\Http\Request;
 
 class Search
 {
@@ -31,20 +32,26 @@ class Search
         ]);
     }
 
-    public function patientDiagnoses(Request $request)
+    public function getAllDoctors(Request $request)
     {
+//        $diagnoses = Diagnoses::all();
+//        $patients = Patient::all();
+//        $doctors = DB::table('doctors')->join('specializations', 'id_doctor', '=', 'specializations.id_specialization')->get();
+
         $patientId = $_GET['id_medcard'];
         $patientDiagnoses = DB::table('diagnoses')->where('id_diagnosis', '=', $patientId);
-        return new View('site.choices', ['patientDiagnoses' => $patientDiagnoses]);
+//        $request->fullUrlWithQuery(['choices' => null]);
+//        return new View('site.results', ['patientDiagnoses' => $patientDiagnoses, 'diagnoses' => $diagnoses, 'patients' => $patients, 'doctors' => $doctors]);
+        return (new View())->render('site.results', ['patientDiagnoses' => $patientDiagnoses]);
     }
 
-    public function allDoctors(Request $request)
-    {
-        $doctors = DB::table('doctors')->where('');
-    }
-
-    public function getAllPatients(Request $request)
-    {
-
-    }
+//    public function allDoctors(Request $request)
+//    {
+//        $doctors = DB::table('doctors')->where('');
+//    }
+//
+//    public function getAllPatients(Request $request)
+//    {
+//
+//    }
 }

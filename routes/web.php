@@ -21,5 +21,7 @@ Route::add('POST', '/reception/register-patient', [Controller\Moderator::class, 
 Route::add('POST', '/reception/record-patient', [Controller\Moderator::class, 'recordPatient']);
 // Search
 Route::add('GET', '/choices', [Controller\Search::class, 'choices'])->middleware('auth');
-Route::add('GET', '/choices/patient-diagnoses', [Controller\Search::class, 'patientDiagnoses']);
-Route::add('GET', '/choices/all-patients', [Controller\Search::class, 'getAllPatients']);
+Route::group('/', function () {
+    Route::add('GET', '/all-doctors', [Controller\Search::class, 'getAllDoctors']);
+});
+//Route::add('GET', '/choices/all-patients', [Controller\Search::class, 'getAllPatients']);

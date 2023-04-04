@@ -23,24 +23,6 @@
             <input type="submit" value="Выбрать">
         </form>
     </div>
-    <div class="diagnosis-results">
-        <h3>Результат выборки</h3>
-        <div class="results">
-            <!--            --><?php
-            //            foreach ($patientDiagnoses as $patientDiagnosis) {
-            //                var_dump($patientDiagnosis);
-            //                die();
-            //                echo "<span>" . $patientDiagnosis . "</span>";
-            //            }
-            //            ?>
-        </div>
-        <div class="results">
-            <span>Фамилия</span><span>Иванов</span>
-            <span>Имя</span> <span>Иван</span>
-            <span>Отчество</span> <span>Иванович</span>
-            <span>Дата рождения</span> <span>30.05.1990</span>
-        </div>
-    </div>
     <div class="choose-all-patients">
         <h3>Выбрать всех пациентов</h3>
         <form action="/server-practice/choices/all-patients" method="post">
@@ -62,24 +44,9 @@
             <input type="submit" value="Выбрать">
         </form>
     </div>
-    <div class="patients-results">
-        <h3>Результат выборки</h3>
-        <div class="results">
-            <span>Фамилия</span><span>Иванов</span>
-            <span>Имя</span> <span>Иван</span>
-            <span>Отчество</span> <span>Иванович</span>
-            <span>Дата рождения</span> <span>30.05.1990</span>
-        </div>
-        <div class="results">
-            <span>Фамилия</span><span>Иванов</span>
-            <span>Имя</span> <span>Иван</span>
-            <span>Отчество</span> <span>Иванович</span>
-            <span>Дата рождения</span> <span>30.05.1990</span>
-        </div>
-    </div>
     <div class="choose-all-doctors">
         <h3>Выбрать всех врачей к которым записан пациент</h3>
-        <form method="get" action="/server-practice/choices/all-doctors">
+        <form method="get" action="/server-practice/">
             <label for="patient-choice">Пациент</label>
             <?php
             echo '<select id="patient-choice" name="id_medcard">';
@@ -93,22 +60,5 @@
             ?>
             <input type="submit" value="Выбрать">
         </form>
-    </div>
-    <div class="patients-results">
-        <h3>Результат выборки</h3>
-        <div class="results">
-            <span>Фамилия</span><span>Иванов</span>
-            <span>Имя</span> <span>Иван</span>
-            <span>Отчество</span> <span>Иванович</span>
-            <span>Дата рождения</span> <span>30.05.1990</span>
-        </div>
-        <div class="results">
-            <span>Фамилия</span><span>Иванов</span>
-            <span>Имя</span> <span>Иван</span>
-            <span>Отчество</span> <span>Иванович</span>
-            <span>Дата рождения</span> <span>30.05.1990</span>
-            <span>Должность</span> <span>Кто то там</span>
-            <span>Специализация</span> <span>Что то там</span>
-        </div>
     </div>
 </div>
