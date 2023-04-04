@@ -4,6 +4,7 @@ namespace Model;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Patient extends Model
 {
@@ -18,4 +19,9 @@ class Patient extends Model
         'medcard_photo',
         'id_diagnosis'
     ];
+
+    public function a(): HasMany
+    {
+        return $this->hasMany(Diagnoses::class);
+    }
 }

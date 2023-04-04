@@ -386,7 +386,6 @@ h3, h2 {
 
 .results {
     display: grid;
-    grid-template-columns: repeat(2, .5fr);
     align-items: center;
     padding: 10px;
     background-color: rgba(170, 170, 170, 0.15);
@@ -441,8 +440,15 @@ footer > img {
     height: 30px;
     filter: grayscale(1) opacity(50%);
 }
+
 .messages {
     display: flex;
     justify-content: center;
     margin-bottom: 20px;
+}
+
+.patients-results {
+    display: grid;
+    grid-auto-rows: minmax(50px, auto);
+    grid-auto-columns: minmax(150px, auto);
 }

@@ -6,8 +6,7 @@
             <label for="all-patients">По всем пациентам</label>
             <input type="button" id="all-patients" value="Выбрать">
         </form>
-        <form method="get" action="/server-practice/choices/patient-diagnoses">
-            <input name="csrf_token" type="hidden" value="<?= app()->auth::generateCSRF() ?>"/>
+        <form method="get" action="/server-practice/patient-diagnoses">
             <label for="patient_diagnoses">По пациенту</label>
             <?php
             echo '<select id="patient_diagnoses" name="id_medcard">';
@@ -46,7 +45,7 @@
     </div>
     <div class="choose-all-doctors">
         <h3>Выбрать всех врачей к которым записан пациент</h3>
-        <form method="get" action="/server-practice/">
+        <form method="get" action="/server-practice/all-doctors">
             <label for="patient-choice">Пациент</label>
             <?php
             echo '<select id="patient-choice" name="id_medcard">';
