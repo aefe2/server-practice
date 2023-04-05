@@ -3,9 +3,9 @@
     if ($doctors):
         echo "<h3>Результат выборки</h3>";
         echo "<div class='results'>";
-            foreach ($doctors as $doctor) {
-                echo "<span>" . $doctor->first_name . "</span>";
-            }
+        foreach ($doctors as $doctor) {
+            echo "<span>" . $doctor->first_name . "</span>";
+        }
         echo "</div>";
     endif;
     ?>
@@ -14,22 +14,28 @@
     if ($patients):
         echo "<h3>Результат выборки</h3>";
         foreach ($patients as $patient) {
+            $omg = $patient->medcard_photo;
             echo "<div class='results'>";
-                echo "<h4>" . "Пациент" . "</h4>";
-                echo "<span>" . "Имя - " . $patient->first_name . "</span>";
-                echo "<span>" . "Диагноз - " . $patient->zxc . "</span>";
+            echo "<span>" . "Фамилия - " . $patient->last_name . "</span>";
+            echo "<span>" . "Имя - " . $patient->first_name . "</span>";
+            echo "<span>" . "Отчество - " . $patient->patronymic . "</span>";
+            echo "<span>" . "Диагноз - " . $patient->zxc . "</span>";
+            echo "<span>" . "Медкарта" . "</span>";
+            echo "<img height='250px' width='250px' src=/server-practice/public/{$omg} alt='медкарточка'>";
             echo "</div>";
         }
     endif;
     ?>
 
     <?php
-    echo "<h3>Результат выборки</h3>";
-    echo "<div class='results'>";
+    if ($diagnoses):
+        echo "<h3>Результат выборки</h3>";
+        echo "<div class='results'>";
         foreach ($diagnoses as $diagnosis) {
             echo "<h4>" . "Индекс диагноза - " . $diagnosis->id_diagnosis . "</h4>";
             echo "<span>" . $diagnosis->diagnosis_name . "</span>";
         }
-    echo "</div>";
+        echo "</div>";
+    endif;
     ?>
 </div>

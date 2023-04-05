@@ -53,11 +53,10 @@ class Search
         $data = $request->all();
 
         if (isset($data['id_medcard'])) {
-//            $diagnoses = DB::table('patients')
-//                ->join('diagnoses', 'patients.id_diagnosis', '=', 'diagnoses.id_diagnosis')
-//                ->select('patients.*', 'diagnoses.diagnosis_name as name')
-//                ->where('diagnoses.id_diagnosis', 'patients.id_diagnosis')->get();
-            $patients = Patient::select('patients.first_name', 'diagnoses.diagnosis_name as zxc')
+            $patients = Patient::select('patients.first_name',
+                'patients.last_name', 'patients.patronymic',
+                'patients.medcard_photo',
+                'diagnoses.diagnosis_name as zxc')
                 ->join('diagnoses', 'patients.id_diagnosis', '=', 'diagnoses.id_diagnosis')
                 ->where('patients.id_medcard', $data['id_medcard'])
                 ->get();
