@@ -3,7 +3,7 @@
         <h3>Выбрать все диагнозы</h3>
         <form method="get" action="/server-practice/all-diagnoses">
             <label for="all-patients">Все диагнозы</label>
-            <input type="button" id="all-patients" value="Выбрать">
+            <input type="submit" id="all-patients" value="Выбрать">
         </form>
         <form method="get" action="/server-practice/patient-diagnoses">
             <label for="patient_diagnoses">По пациенту</label>

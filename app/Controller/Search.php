@@ -35,17 +35,15 @@ class Search
 
     public function getAllDoctors(Request $request)
     {
-//        $diagnoses = Diagnoses::all();
-//        $patients = Patient::all();
-//        $doctors = DB::table('doctors')->join('specializations', 'id_doctor', '=', 'specializations.id_specialization')->get();
-
         $patientId = $_GET['id_medcard'];
-//        $patientDiagnoses = DB::table('diagnoses')->where('id_diagnosis', '=', $patientId);
         $doctors = DB::table('appointments')->where($patientId, '=', "id_doctor./$patientId/")->get();
-
-//        $request->fullUrlWithQuery(['choices' => null]);
-//        return new View('site.results', ['patientDiagnoses' => $patientDiagnoses, 'diagnoses' => $diagnoses, 'patients' => $patients, 'doctors' => $doctors]);
         return (new View())->render('site.results', ['doctors' => $doctors]);
+    }
+
+    public function allDiagnoses(Request $request)
+    {
+        $diagnoses = Diagnoses::all();
+        return (new View())->render('site.results', ['diagnoses' => $diagnoses]);
     }
 
     public function patientDiagnoses(Request $request)
@@ -66,10 +64,4 @@ class Search
         }
         return (new View())->render('site.results', ['patients' => $patients]);
     }
-
-    public function getDoctors()
-    {
-        
-    }
-
 }
