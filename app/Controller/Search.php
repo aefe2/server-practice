@@ -69,4 +69,12 @@ class Search
         }
         return (new View())->render('site.results', ['patients' => $patients]);
     }
+
+    public function getAllPatients(Request $request)
+    {
+        $data = $request->all();
+
+        if (isset($data)) {
+        }
+    }
 }

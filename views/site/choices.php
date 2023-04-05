@@ -23,8 +23,7 @@
     </div>
     <div class="choose-all-patients">
         <h3>Выбрать всех пациентов</h3>
-        <form action="/server-practice/choices/all-patients" method="post">
-            <input name="csrf_token" type="hidden" value="<?= app()->auth::generateCSRF() ?>"/>
+        <form action="/server-practice/all-patients" method="get">
             <label for="doctor-record">Врач, к которому запись</label>
             <?php
             echo '<select id="patient_diagnoses" name="id_doctor">';
@@ -39,6 +38,16 @@
             ?>
             <label for="record-date">Дата записи</label>
             <input id="record-date" type="date">
+            <?php
+            echo "<select id='record-date'>";
+            foreach ($dates as $date) {
+                echo "<option value=''>" .
+                    "</option>";
+            }
+            echo "</select>";
+            ?>
+
+
             <input type="submit" value="Выбрать">
         </form>
     </div>
