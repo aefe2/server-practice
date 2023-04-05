@@ -4,7 +4,12 @@
         echo "<h3>Результат выборки</h3>";
         echo "<div class='results'>";
         foreach ($doctors as $doctor) {
-            echo "<span>" . $doctor->first_name . "</span>";
+            echo "<span>" . "Фамилия - " . $doctor->last_name . "</span>";
+            echo "<span>" . "Имя - " . $doctor->first_name . "</span>";
+            echo "<span>" . "Отчество - " . $doctor->patronymic . "</span>";
+            echo "<span>" . "Дата рождения - " . $doctor->date_of_birth . "</span>";
+            echo "<span>" . "Должность - " . $doctor->position . "</span>";
+            echo "<span>" . "Специализация - " . $doctor->specialization_name . "</span>";
         }
         echo "</div>";
     endif;

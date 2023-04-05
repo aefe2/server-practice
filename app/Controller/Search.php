@@ -11,8 +11,6 @@ use Model\Specializations;
 use Src\Request;
 use Src\View;
 
-//use Illuminate\Http\Request;
-
 class Search
 {
     public function choices(Request $request): string
@@ -35,8 +33,16 @@ class Search
 
     public function getAllDoctors(Request $request)
     {
-        $patientId = $_GET['id_medcard'];
-        $doctors = DB::table('appointments')->where($patientId, '=', "id_doctor./$patientId/")->get();
+        $data = $request->all();
+        if (isset($data['id_medcard'])) {
+            $doctors = Doctor::select('doctors.first_name',
+                'doctors.last_name', 'doctors.patronymic',
+                'doctors.date_of_birth', 'doctors.position',
+                'specializations.specialization_name')
+                ->join('specializations', 'doctors.id_doctor', '=', 'specializations.id_specialization')
+                ->join('appointments', 'doctors.id_doctor', '=', 'appointments.id_ticket')
+                ->where('appointments.id_medcard', $data['id_medcard'])->get();
+        }
         return (new View())->render('site.results', ['doctors' => $doctors]);
     }
 
