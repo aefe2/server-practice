@@ -21,8 +21,8 @@ class Admin
     public function adminPanel(Request $request): string
     {
         $cabinets = Cabinet::all();
-        $doctors = DB::table('doctors')->join('specializations', 'id_doctor', '=', 'specializations.id_specialization')->get();
-        $specializations = Specializations::all();
+        $doctors = DB::table('doctors')->join('specializations', 'doctors.id_specialization', '=', 'specializations.id_specialization')->get();
+        $specializations = DB::table('specializations')->get();
         $full_names = Patient::all();
         $diagnoses = Diagnoses::all();
         return (new View())->render('site.admin', [
@@ -104,18 +104,16 @@ class Admin
 
             $newFileName = $fileUploader->upload($destination, $allowedTypes, $maxSize);
 
-            DB::table('patients')->insert([
+            if (DB::table('patients')->insert([
                 'medcard_photo' => $destination . '/' . $newFileName,
                 'last_name' => $_POST['last_name'],
                 'first_name' => $_POST['first_name'],
                 'patronymic' => $_POST['patronymic'],
                 'id_diagnosis' => $_POST['id_diagnosis'],
                 'date_of_birth' => $_POST['date_of_birth'],
-            ]);
-//            if (Patient::create($request->all())) {
-////                app()->route->redirect('/admin');
-//                return (new View())->render('site.admin');
-//            }
+            ])) {
+                app()->route->redirect('/admin');
+            }
         }
         return (new View())->render('site.admin');
     }

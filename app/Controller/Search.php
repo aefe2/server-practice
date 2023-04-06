@@ -16,7 +16,7 @@ class Search
     public function choices(Request $request): string
     {
         $cabinets = Cabinet::all();
-        $doctors = DB::table('doctors')->join('specializations', 'id_doctor', '=', 'specializations.id_specialization')->get();
+        $doctors = DB::table('doctors')->join('specializations', 'doctors.id_specialization', '=', 'specializations.id_specialization')->get();
         $allDoctors = Doctor::all();
         $specializations = Specializations::all();
         $patients = Patient::all();
@@ -70,11 +70,11 @@ class Search
         return (new View())->render('site.results', ['patients' => $patients]);
     }
 
-    public function getAllPatients(Request $request)
-    {
-        $data = $request->all();
-
-        if (isset($data)) {
-        }
-    }
+//    public function getAllPatients(Request $request)
+//    {
+//        $data = $request->all();
+//
+//        if (isset($data)) {
+//        }
+//    }
 }
