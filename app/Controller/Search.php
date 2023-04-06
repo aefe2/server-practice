@@ -3,6 +3,7 @@
 namespace Controller;
 
 use Illuminate\Database\Capsule\Manager as DB;
+use Model\Appointment;
 use Model\Cabinet;
 use Model\Diagnoses;
 use Model\Doctor;
@@ -16,18 +17,22 @@ class Search
     public function choices(Request $request): string
     {
         $cabinets = Cabinet::all();
-        $doctors = DB::table('doctors')->join('specializations', 'doctors.id_specialization', '=', 'specializations.id_specialization')->get();
+        $doctors = DB::table('doctors')
+            ->join('specializations', 'doctors.id_specialization', '=',
+                'specializations.id_specialization')->get();
         $allDoctors = Doctor::all();
         $specializations = Specializations::all();
         $patients = Patient::all();
         $diagnoses = Diagnoses::all();
+        $appointment_date = Appointment::select('appointments.appointment_date', 'appointments.appointment_time')->get();
         return new View('site.choices', [
             'specializations' => $specializations,
             'patients' => $patients,
             'doctors' => $doctors,
             'cabinets' => $cabinets,
             'diagnoses' => $diagnoses,
-            'allDoctors' => $allDoctors
+            'allDoctors' => $allDoctors,
+            'appointment_date' => $appointment_date
         ]);
     }
 
@@ -70,11 +75,12 @@ class Search
         return (new View())->render('site.results', ['patients' => $patients]);
     }
 
-//    public function getAllPatients(Request $request)
-//    {
-//        $data = $request->all();
-//
-//        if (isset($data)) {
-//        }
-//    }
+    public function getAllPatients(Request $request)
+    {
+        $data = $request->all();
+
+        if (isset($data)) {
+            $result = 1;
+        }
+    }
 }

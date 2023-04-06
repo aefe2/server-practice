@@ -5,7 +5,7 @@
             <label for="all-patients">Все диагнозы</label>
             <input type="submit" id="all-patients" value="Выбрать">
         </form>
-        <form method="get" action="/server-practice/patient-diagnoses">
+        <form style="margin-top: 10px;" method="get" action="/server-practice/patient-diagnoses">
             <label for="patient_diagnoses">По пациенту</label>
             <?php
             echo '<select id="patient_diagnoses" name="id_medcard">';
@@ -18,11 +18,11 @@
             }
             echo '</select>';
             ?>
-            <input type="submit" value="Выбрать">
+            <input class="btn-center" type="submit" value="Выбрать">
         </form>
     </div>
     <div class="choose-all-patients">
-        <h3>Выбрать всех пациентов</h3>
+        <h3>Выбрать всех пациентов записанных к определенному врачу на определенную дату</h3>
         <form action="/server-practice/all-patients" method="get">
             <label for="doctor-record">Врач, к которому запись</label>
             <?php
@@ -37,17 +37,15 @@
             echo '</select>';
             ?>
             <label for="record-date">Дата записи</label>
-            <input id="record-date" type="date">
             <?php
             echo "<select id='record-date'>";
-            foreach ($dates as $date) {
-                echo "<option value=''>" .
-                    "</option>";
+            foreach ($appointment_date as $date) {
+                echo "<option value=\'$date->appointment_date\'>"
+                    . $date->appointment_date . ' / '
+                    . $date->appointment_time . "</option>";
             }
             echo "</select>";
             ?>
-
-
             <input type="submit" value="Выбрать">
         </form>
     </div>
@@ -69,3 +67,23 @@
         </form>
     </div>
 </div>
+<style>
+    .btn-center {
+        background: black;
+        color: white;
+        margin: 10px auto;
+        grid-column: 1/3;
+        grid-row: 7/8;
+    }
+
+    input[type=submit] {
+        background: black;
+        color: white;
+    }
+
+    input[type=submit]:hover {
+        transition: .1s;
+        background: white;
+        color: black;
+    }
+</style>

@@ -1,6 +1,7 @@
 <div class="patients-results">
     <?php
-    if ($doctors):
+    //Выбрать всех врачей к которым записан пациент
+    if (isset($doctors)):
         echo "<h3>Результат выборки</h3>";
         echo "<div class='results'>";
         foreach ($doctors as $doctor) {
@@ -16,7 +17,8 @@
     ?>
 
     <?php
-    if ($patients):
+    //Выбрать все диагнозы По пациенту
+    if (isset($patients)):
         echo "<h3>Результат выборки</h3>";
         foreach ($patients as $patient) {
             $omg = $patient->medcard_photo;
@@ -33,7 +35,8 @@
     ?>
 
     <?php
-    if ($diagnoses):
+    //Выбрать все диагнозы Все диагнозы
+    if (isset($diagnoses)):
         echo "<h3>Результат выборки</h3>";
         echo "<div class='results'>";
         foreach ($diagnoses as $diagnosis) {
@@ -42,5 +45,10 @@
         }
         echo "</div>";
     endif;
+    ?>
+
+    <?php
+    //Выбрать всех пациентов
+
     ?>
 </div>
