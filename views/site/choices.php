@@ -12,8 +12,8 @@
             foreach ($patients as $patient) {
                 echo "<option value=\"$patient->id_medcard\">"
                     . $patient->last_name . ' '
-                    . substr($patient->first_name, 0, 1) . '.'
-                    . substr($patient->patronymic, 0, 1) .
+                    . mb_substr($patient->first_name, 0, 1) . '.'
+                    . mb_substr($patient->patronymic, 0, 1) .
                     "</option>";
             }
             echo '</select>';
@@ -30,8 +30,8 @@
             foreach ($allDoctors as $doctor) {
                 echo "<option value=\"$doctor->id_doctor\">"
                     . $doctor->last_name . ' '
-                    . substr($doctor->first_name, 0, 1) . '.'
-                    . substr($doctor->patronymic, 0, 1) .
+                    . mb_substr($doctor->first_name, 0, 1) . '.'
+                    . mb_substr($doctor->patronymic, 0, 1) .
                     "</option>";
             }
             echo '</select>';
@@ -60,8 +60,8 @@
             foreach ($patients as $patient) {
                 echo "<option value=\"$patient->id_medcard\">"
                     . $patient->last_name . ' '
-                    . substr($patient->first_name, 0, 1) . '.'
-                    . substr($patient->patronymic, 0, 1) . '</option>';
+                    . mb_substr($patient->first_name, 0, 1) . '.'
+                    . mb_substr($patient->patronymic, 0, 1) . '</option>';
             }
             echo '</select>';
             ?>

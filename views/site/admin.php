@@ -65,7 +65,7 @@
             echo '<select id="patient-choice" name="id_medcard">';
             foreach ($full_names as $patient) {
                 echo "<option value=\"$patient->id_medcard\">"
-                    . $patient->last_name . ' ' . substr($patient->first_name, 0, 1) . '.' . substr($patient->patronymic, 0, 1) . '.' .
+                    . $patient->last_name . ' ' . mb_substr($patient->first_name, 0, 1) . '.' . mb_substr($patient->patronymic, 0, 1) . '.' .
                     "</option>";
             }
             echo '</select>';
@@ -75,8 +75,8 @@
             echo '<select id="doctor-choice" name="id_doctor">';
             foreach ($doctors as $doctor) {
                 echo "<option value=\"$doctor->id_doctor\">"
-                    . $doctor->last_name . ' ' . substr($doctor->first_name, 0, 1) . '.'
-                    . substr($doctor->patronymic, 0, 1) . ' - '
+                    . $doctor->last_name . ' ' . mb_substr($doctor->first_name, 0, 1) . '.'
+                    . mb_substr($doctor->patronymic, 0, 1) . ' - '
                     . $doctor->specialization_name .
                     "</option>";
             }
