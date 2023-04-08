@@ -49,6 +49,21 @@
 
     <?php
     //Выбрать всех пациентов
-
+    if (isset($res)):
+        echo "<h3>Результат выборки</h3>";
+        echo "<div class='results'>";
+        foreach ($res as $value) {
+            $omg = $value->medcard_photo;
+            echo "<div class='results'>";
+            echo "<span>" . "Фамилия - " . $value->last_name . "</span>";
+            echo "<span>" . "Имя - " . $value->first_name . "</span>";
+            echo "<span>" . "Отчество - " . $value->patronymic . "</span>";
+            echo "<span>" . "Дата записи - " . $value->appointment_date . "</span>";
+            echo "<span>" . "Медкарта" . "</span>";
+            echo "<img height='250px' width='250px' src=/server-practice/public/{$omg} alt='медкарточка'>";
+            echo "</div>";
+        }
+        echo "</div>";
+    endif;
     ?>
 </div>

@@ -79,10 +79,11 @@ class Search
         $appointment_date = Appointment::all();
         $data = $request->all();
         if ($data['id_doctor']) {
-            $appointment_date = Appointment::select('appointments.appointment_date', 'appointments.appointment_time')
+            $appointment_date = Appointment::select('appointments.appointment_date', 'appointments.appointment_time', 'appointments.id_medcard')
                 ->join('doctors', 'appointments.id_doctor', '=', 'doctors.id_doctor')
                 ->where('appointments.id_doctor', $data['id_doctor'])->get();
         }
+
         //не робит..
 //        var_dump($appointment_date);
 //        if ($appointment_date) {
@@ -96,9 +97,18 @@ class Search
     public function getAllPatients(Request $request)
     {
         $data = $request->all();
-
-        if (isset($data)) {
-            $result = 1;
+        $patients_app = Patient::all();
+        if ($data['appointment_date']) {
+//            $patients_app = Patient::select('patients.first_name',
+//                'patients.last_name', 'patients.patronymic',
+//                'patients.medcard_photo', 'appointments.*')
+//                ->join('appointments', 'patients.id_medcard', '=', 'appointments.id_medcard')
+//                ->where('appointments.appointment_date', $data['appointment_date'])->get();
+            $res = Appointment::select('appointments.*', 'patients.*')
+                ->join('patients', 'appointments.id_medcard', '=', 'patients.id_medcard')
+                ->where('appointments.id_medcard', $data['appointment_date'])
+                ->get();
         }
+        return (new View())->render('site.results', ['res' => $res]);
     }
 }
