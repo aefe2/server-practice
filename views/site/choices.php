@@ -1,3 +1,6 @@
+<div class="messages">
+    <label><?= $message ?? ''; ?></label>
+</div>
 <div class="forms">
     <div class="choose-all-diagnosis">
         <h3>Выбрать все диагнозы</h3>
@@ -22,8 +25,8 @@
         </form>
     </div>
     <div class="choose-all-patients">
-        <h3>Выбрать всех пациентов записанных к определенному врачу на определенную дату</h3>
-        <form action="/server-practice/all-patients" method="get">
+        <h3>Выбрать всех пациентов записанных к определенному врачу</h3>
+        <form action="/server-practice/date-choice" method="get">
             <label for="doctor-record">Врач, к которому запись</label>
             <?php
             echo '<select id="patient_diagnoses" name="id_doctor">';
@@ -35,16 +38,6 @@
                     "</option>";
             }
             echo '</select>';
-            ?>
-            <label for="record-date">Дата записи</label>
-            <?php
-            echo "<select id='record-date'>";
-            foreach ($appointment_date as $date) {
-                echo "<option value=\'$date->appointment_date\'>"
-                    . $date->appointment_date . ' / '
-                    . $date->appointment_time . "</option>";
-            }
-            echo "</select>";
             ?>
             <input type="submit" value="Выбрать">
         </form>

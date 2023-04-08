@@ -21,7 +21,9 @@ class Admin
     public function adminPanel(Request $request): string
     {
         $cabinets = Cabinet::all();
-        $doctors = DB::table('doctors')->join('specializations', 'doctors.id_specialization', '=', 'specializations.id_specialization')->get();
+        $doctors = DB::table('doctors')
+            ->join('specializations', 'doctors.id_specialization', '=', 'specializations.id_specialization')
+            ->get();
         $specializations = DB::table('specializations')->get();
         $full_names = Patient::all();
         $diagnoses = Diagnoses::all();

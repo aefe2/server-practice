@@ -11,6 +11,7 @@ use Model\Patient;
 use Model\Specializations;
 use Src\Request;
 use Src\View;
+use Tests\Laravel\App;
 
 class Search
 {
@@ -24,7 +25,6 @@ class Search
         $specializations = Specializations::all();
         $patients = Patient::all();
         $diagnoses = Diagnoses::all();
-        $appointment_date = Appointment::select('appointments.appointment_date', 'appointments.appointment_time')->get();
         return new View('site.choices', [
             'specializations' => $specializations,
             'patients' => $patients,
@@ -32,7 +32,6 @@ class Search
             'cabinets' => $cabinets,
             'diagnoses' => $diagnoses,
             'allDoctors' => $allDoctors,
-            'appointment_date' => $appointment_date
         ]);
     }
 
@@ -73,6 +72,25 @@ class Search
                 ->get();
         }
         return (new View())->render('site.results', ['patients' => $patients]);
+    }
+
+    public function toDate(Request $request)
+    {
+        $appointment_date = Appointment::all();
+        $data = $request->all();
+        if ($data['id_doctor']) {
+            $appointment_date = Appointment::select('appointments.appointment_date', 'appointments.appointment_time')
+                ->join('doctors', 'appointments.id_doctor', '=', 'doctors.id_doctor')
+                ->where('appointments.id_doctor', $data['id_doctor'])->get();
+        }
+        //не робит..
+//        var_dump($appointment_date);
+//        if ($appointment_date) {
+//            $message = 'У данного врача еще не было приемов';
+//            return (new View())->render('site.choices', ['message' => $message]);
+//        }
+
+        return (new View())->render('site.date-choice', ['appointment_date' => $appointment_date]);
     }
 
     public function getAllPatients(Request $request)

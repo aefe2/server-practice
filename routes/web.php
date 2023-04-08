@@ -28,4 +28,5 @@ Route::add('GET', '/choices', [Controller\Search::class, 'choices'])->middleware
 Route::add('GET', '/all-doctors', [Controller\Search::class, 'getAllDoctors']);
 Route::add('GET', '/patient-diagnoses', [Controller\Search::class, 'patientDiagnoses']);
 Route::add('GET', '/all-diagnoses', [Controller\Search::class, 'allDiagnoses']);
+Route::add('GET', '/date-choice', [Controller\Search::class, 'toDate']);
 Route::add('GET', '/all-patients', [Controller\Search::class, 'getAllPatients']);
