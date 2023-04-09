@@ -37,8 +37,11 @@ class Moderator
     {
         if ($request->method === 'POST') {
             $validator = new Validator($request->all(), [
-                'appointment_date' => ['required'],
-                'appointment_time' => ['required']
+                'id_medcard' => ['required'],
+                'id_doctor' => ['required'],
+                'appointment_date' => ['required', 'appointmentDate'],
+                'appointment_time' => ['required'],
+                'id_cabinet' => ['required']
             ], [
                 'required' => 'Поле :field пусто'
             ]);
@@ -57,10 +60,11 @@ class Moderator
     {
         if ($request->method === 'POST') {
             $validator = new Validator($request->all(), [
-                'first_name' => ['required'],
-                'last_name' => ['required'],
-                'patronymic' => ['required'],
-                'date_of_birth' => ['required']
+                'first_name' => ['required', 'cyrillic'],
+                'last_name' => ['required', 'cyrillic'],
+                'patronymic' => ['required', 'cyrillic'],
+                'date_of_birth' => ['required', 'birthday'],
+                'medcard_photo' => ['required', 'fileType', 'fileSize']
             ], [
                 'required' => 'Поле :field пусто'
             ]);
@@ -70,16 +74,20 @@ class Moderator
             }
 
             $fileUploader = new FileUploader($_FILES['medcard_photo']);
-            //xampp
-            $destination = 'uploads/';
-//            $destination = '/server-practice/public/uploads/';
-            $allowedTypes = ['image/jpeg', 'image.png'];
-            //Макс размер в битах, 2.5Мб в данный момент
-            $maxSize = 20971520;
 
-            $newFileName = $fileUploader->upload($destination, $allowedTypes, $maxSize);
-            if (Patient::create($request->all())) {
-                return (new View())->render('site.reception');
+            $destination = 'uploads';
+
+            $newFileName = $fileUploader->upload($destination);
+
+            if (DB::table('patients')->insert([
+                'medcard_photo' => $destination . '/' . $newFileName,
+                'last_name' => $_POST['last_name'],
+                'first_name' => $_POST['first_name'],
+                'patronymic' => $_POST['patronymic'],
+                'id_diagnosis' => $_POST['id_diagnosis'],
+                'date_of_birth' => $_POST['date_of_birth'],
+            ])) {
+                app()->route->redirect('/reception');
             }
         }
         return (new View())->render('site.reception');
