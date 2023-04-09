@@ -7,7 +7,7 @@ use Src\Validator\AbstractValidator;
 class AppointmentDateValidator extends AbstractValidator
 {
 
-    protected string $message = 'Поле :field нельзя записать на прошедшее время';
+    protected string $message = 'Поле :field не допускается прошедшее время';
 
     public function rule(): bool
     {

@@ -36,26 +36,6 @@ class Admin
         ]);
     }
 
-    public function patientAppointment(Request $request): string
-    {
-        if ($request->method === 'POST') {
-            $validator = new Validator($request->all(), [
-                'appointment_date' => ['required', 'appointmentDate'],
-                'appointment_time' => ['required',]
-            ], [
-                'required' => 'Поле :field пусто'
-            ]);
-            if ($validator->fails()) {
-                return new View('site.admin',
-                    ['message' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE)]);
-            }
-            if (Appointment::create($request->all())) {
-                app()->route->redirect('/admin');
-            }
-        }
-        return (new View())->render('site.admin');
-    }
-
     public function addDoctor(Request $request): string
     {
         if ($request->method === 'POST') {
@@ -142,5 +122,28 @@ class Admin
         }
         return $this->adminPanel($request);
 
+    }
+
+    public function patientAppointment(Request $request): string
+    {
+        if ($request->method === 'POST') {
+            $validator = new Validator($request->all(), [
+                'id_medcard' => ['required'],
+                'id_doctor' => ['required'],
+                'appointment_date' => ['required', 'appointmentDate'],
+                'appointment_time' => ['required'],
+                'id_cabinet' => ['required']
+            ], [
+                'required' => 'Поле :field пусто'
+            ]);
+            if ($validator->fails()) {
+                return new View('site.admin',
+                    ['message' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE)]);
+            }
+            if (Appointment::create($request->all())) {
+                app()->route->redirect('/admin');
+            }
+        }
+        return (new View())->render('site.admin');
     }
 }

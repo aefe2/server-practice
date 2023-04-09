@@ -11,7 +11,6 @@
             <label for="doctor-first-name">Имя</label>
             <input id="doctor-first-name" type="text" name="first_name">
             <label for="doctor-patronymic">Отчество</label>
-
             <input id="doctor-patronymic" type="text" name="patronymic">
             <label for="doctor-birth-date">Дата рождения</label>
             <input id="doctor-birth-date" type="date" name="date_of_birth">
@@ -23,7 +22,6 @@
             foreach ($specializations as $specialization) {
                 echo "<option value=\"$specialization->id_specialization\">" . $specialization->specialization_name . '</option>';
             }
-
             echo '</select>';
             ?>
             <input type="submit" value="Добавить">
