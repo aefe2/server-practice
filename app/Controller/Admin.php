@@ -40,8 +40,8 @@ class Admin
     {
         if ($request->method === 'POST') {
             $validator = new Validator($request->all(), [
-                'appointment_date' => ['required'],
-                'appointment_time' => ['required']
+                'appointment_date' => ['required', 'appointmentDate'],
+                'appointment_time' => ['required',]
             ], [
                 'required' => 'Поле :field пусто'
             ]);
