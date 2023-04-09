@@ -60,11 +60,11 @@ class Admin
     {
         if ($request->method === 'POST') {
             $validator = new Validator($request->all(), [
-                'last_name' => ['required'],
-                'first_name' => ['required'],
-                'patronymic' => ['required'],
-                'date_of_birth' => ['required'],
-                'position' => ['required']
+                'last_name' => ['required', 'cyrillic'],
+                'first_name' => ['required', 'cyrillic'],
+                'patronymic' => ['required', 'cyrillic'],
+                'date_of_birth' => ['required', 'birthday'],
+                'position' => ['required', 'cyrillic']
             ], [
                 'required' => 'Поле :field пусто'
             ]);
@@ -84,10 +84,11 @@ class Admin
     {
         if ($request->method === 'POST') {
             $validator = new Validator($request->all(), [
-                'first_name' => ['required'],
-                'last_name' => ['required'],
-                'patronymic' => ['required'],
-                'date_of_birth' => ['required']
+                'first_name' => ['required', 'cyrillic'],
+                'last_name' => ['required', 'cyrillic'],
+                'patronymic' => ['required', 'cyrillic'],
+                'date_of_birth' => ['required', 'birthday'],
+                'medcard_photo' => ['required', 'fileType', 'fileSize']
             ], [
                 'required' => 'Поле :field пусто'
             ]);
@@ -99,12 +100,8 @@ class Admin
             $fileUploader = new FileUploader($_FILES['medcard_photo']);
 
             $destination = 'uploads';
-//            $destination = '/server-practice/public/uploads';
-            $allowedTypes = ['image/jpeg', 'image.png', 'image/jpg'];
-            //Макс размер в битах, 2.5Мб в данный момент
-            $maxSize = 20971520;
 
-            $newFileName = $fileUploader->upload($destination, $allowedTypes, $maxSize);
+            $newFileName = $fileUploader->upload($destination);
 
             if (DB::table('patients')->insert([
                 'medcard_photo' => $destination . '/' . $newFileName,
@@ -122,12 +119,11 @@ class Admin
 
     public function addUser(Request $request): string
     {
-
         if ($request->method === 'POST') {
             $validator = new Validator($request->all(), [
-                'name' => ['required'],
-                'last_name' => ['required'],
-                'patronymic' => ['required'],
+                'name' => ['required', 'cyrillic'],
+                'last_name' => ['required', 'cyrillic'],
+                'patronymic' => ['required', 'cyrillic'],
                 'login' => ['required', 'unique:users,login'],
                 'password' => ['required']
             ], [

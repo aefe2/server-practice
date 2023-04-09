@@ -99,11 +99,6 @@ class Search
         $data = $request->all();
         $patients_app = Patient::all();
         if ($data['appointment_date']) {
-//            $patients_app = Patient::select('patients.first_name',
-//                'patients.last_name', 'patients.patronymic',
-//                'patients.medcard_photo', 'appointments.*')
-//                ->join('appointments', 'patients.id_medcard', '=', 'appointments.id_medcard')
-//                ->where('appointments.appointment_date', $data['appointment_date'])->get();
             $res = Appointment::select('appointments.*', 'patients.*')
                 ->join('patients', 'appointments.id_medcard', '=', 'patients.id_medcard')
                 ->where('appointments.id_medcard', $data['appointment_date'])

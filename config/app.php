@@ -11,7 +11,11 @@ return [
     ],
     'validators' => [
         'required' => \Validators\RequireValidator::class,
-        'unique' => \Validators\UniqueValidator::class
+        'unique' => \Validators\UniqueValidator::class,
+        'birthday' => \Validators\BirthDayValidator::class,
+        'cyrillic' => \Validators\CyrillicValidator::class,
+        'fileSize' => \Validators\FileSizeValidator::class,
+        'fileType' => \Validators\FileTypeValidator::class
     ],
     'routeAppMiddleware' => [
         'csrf' => \Middlewares\CSRFMiddleware::class,

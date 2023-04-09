@@ -55,11 +55,12 @@
         foreach ($res as $value) {
             $omg = $value->medcard_photo;
             echo "<div class='results'>";
-            echo "<span>" . "Фамилия - " . $value->last_name . "</span>";
-            echo "<span>" . "Имя - " . $value->first_name . "</span>";
-            echo "<span>" . "Отчество - " . $value->patronymic . "</span>";
-            echo "<span>" . "Дата записи - " . $value->appointment_date . "</span>";
-            echo "<span>" . "Медкарта" . "</span>";
+            echo "<span>" . "<b>Фамилия</b> - " . $value->last_name . "</span>";
+            echo "<span>" . "<b>Имя</b> - " . $value->first_name . "</span>";
+            echo "<span>" . "<b>Отчество</b> - " . $value->patronymic . "</span>";
+            echo "<span>" . "<b>Дата записи</b> - " . $value->appointment_date . "</span>";
+            echo "<span>" . "<b>Время записи</b> - " . $value->appointment_time . "</span>";
+            echo "<span>" . "<b>Медкарта</b>" . "</span>";
             echo "<img height='250px' width='250px' src=/server-practice/public/{$omg} alt='медкарточка'>";
             echo "</div>";
         }

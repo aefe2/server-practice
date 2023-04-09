@@ -19,22 +19,12 @@ class FileUploader
         $this->fileTempName = $file['tmp_name'];
     }
 
-    public function upload($destination, $allowedTypes, $maxSize)
+    public function upload($destination)
     {
         $extension = pathinfo($this->fileName, PATHINFO_EXTENSION);
 
         $message = array();
 
-        //Проверка на тип файла
-        if (!in_array($this->fileType, $allowedTypes)) {
-            $message[] = 'Не поддерживаемый тип файла';
-        }
-
-        //Проверка на макс размер фалйа
-        if ($this->fileSize > $maxSize) {
-            $message[] = 'Файл слишком большой';
-        }
-        //Новое имя для файла
         if (!empty($message)) {
             return $message;
         } else {
